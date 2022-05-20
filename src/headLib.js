@@ -11,3 +11,4 @@ const head = (content, limit) => {
 };
 
 exports.head = head;
+exports.extractLines = extractLines;

@@ -1,10 +1,10 @@
 **TODO**
 
-- [ ] Add test for extractLines function
 - [ ] Move line function in different library
 - [ ] Remove magic number in head function
 - [ ] Consider by-default options
 - [ ] Investigate about -c option
+- [ ] Implement -c option
 
 **MAYBE**
 
@@ -12,6 +12,7 @@
 
 **DONE**
 
+- [x] Add test for extractLines function
 - [x] Extract logical part in a function 
 - [x] Investigate -n option properly (eg. line count is 0)
 - [x] Extract function split and join
