@@ -1,17 +1,15 @@
-const { splitLines, joinLines } = require('./stringUtils');
+const { splitLines, joinLines, sliceFromStart } = require('./stringUtils');
 
-const sliceFromStart = (lines, limit) => lines.slice(0, limit);
-
-const head = (content, { limit, separator }) => {
+const head = (content, option) => {
+  const separator = option.switch === 'number' ? '\n' : '';
   const lines = splitLines(content, separator);
-  return joinLines(sliceFromStart(lines, limit), separator);
+  return joinLines(sliceFromStart(lines, option.value), separator);
 };
 
 const headMain = (readFileSync, fileName) => {
   const content = readFileSync(fileName, 'utf8');
-  return head(content, { limit: 1, separator: '\n' });
+  return head(content, { switch: 'number', value: 1 });
 };
 
 exports.head = head;
-exports.sliceFromStart = sliceFromStart;
 exports.headMain = headMain;

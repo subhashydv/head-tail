@@ -4,6 +4,7 @@
 - [ ] Consider by-default options
 - [ ] Extract function for bytes character
 - [ ] Write parser for input
+- [ ] Add test for splitLines and joinLines function
 
 **MAYBE**
 
@@ -11,6 +12,7 @@
 
 **DONE**
 
+- [x] Move function spliceFromStart to stringUtils.js
 - [x] Change structure for option object
 - [x] Implement -c option
 - [x] Investigate about -c option
