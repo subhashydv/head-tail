@@ -1,6 +1,5 @@
 **TODO**
 
-- [ ] Extract function split and join
 - [ ] Remove magic number in head function
 - [ ] Consider by-default options
 - [ ] Investigate -n option properly (eg. line count is 0)
@@ -12,6 +11,7 @@
 
 **DONE**
 
+- [x] Extract function split and join
 - [x] Implement line limit in head
 - [x] Update README with option --help
 - [x] Implement head for `multiple lines`
