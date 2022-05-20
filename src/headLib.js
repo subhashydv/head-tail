@@ -1,7 +1,4 @@
-const NEWLINE = '\n';
-
-const splitLines = lines => lines.split(NEWLINE);
-const joinLines = lines => lines.join(NEWLINE);
+const { splitLines, joinLines } = require('./stringUtils');
 
 const extractLines = (lines, limit) => lines.slice(0, limit);
 

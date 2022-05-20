@@ -1,6 +1,5 @@
 **TODO**
 
-- [ ] Move line function in different library
 - [ ] Remove magic number in head function
 - [ ] Consider by-default options
 - [ ] Investigate about -c option
@@ -12,6 +11,7 @@
 
 **DONE**
 
+- [x] Move string function in different library
 - [x] Add test for extractLines function
 - [x] Extract logical part in a function 
 - [x] Investigate -n option properly (eg. line count is 0)
