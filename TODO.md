@@ -3,6 +3,7 @@
 - [ ] Remove magic number in head function
 - [ ] Consider by-default options
 - [ ] Extract function for bytes character
+- [ ] Write parser for input
 
 **MAYBE**
 
@@ -10,6 +11,7 @@
 
 **DONE**
 
+- [x] Change structure for option object
 - [x] Implement -c option
 - [x] Investigate about -c option
 - [x] Use richer structure for parsing data in head function
