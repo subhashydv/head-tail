@@ -4,14 +4,15 @@
 - [ ] Consider by-default options
 - [ ] Extract function for bytes character
 - [ ] Write parser for input
-- [ ] Add test for splitLines and joinLines function
 
 **MAYBE**
 
 - [ ] Consider alternative for slice in head function
+- [ ] Change the switch name
 
 **DONE**
 
+- [x] Add test for splitLines and joinLines function
 - [x] Move function spliceFromStart to stringUtils.js
 - [x] Change structure for option object
 - [x] Implement -c option
