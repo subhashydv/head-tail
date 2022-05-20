@@ -1,9 +1,8 @@
 **TODO**
 
 - [ ] Remove magic number in head function
-- [ ] Investigate about -c option
-- [ ] Implement -c option
 - [ ] Consider by-default options
+- [ ] Extract function for bytes character
 
 **MAYBE**
 
@@ -11,6 +10,8 @@
 
 **DONE**
 
+- [x] Implement -c option
+- [x] Investigate about -c option
 - [x] Use richer structure for parsing data in head function
 - [x] Consider test file separation
 - [x] Add lib main without any option
