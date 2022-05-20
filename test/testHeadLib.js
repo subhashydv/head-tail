@@ -3,20 +3,29 @@ const { head, extractLines, } = require('../src/headLib.js');
 
 describe('head', () => {
   it('Should return single line', () => {
-    assert.strictEqual(head('hello', 1), 'hello');
-    assert.strictEqual(head('world', 1), 'world');
-    assert.strictEqual(head('hello world', 1), 'hello world');
+    assert.strictEqual(head('hello', { lineLimit: 1 }), 'hello');
+    assert.strictEqual(head('world', { lineLimit: 1 }), 'world');
+    assert.strictEqual(head('hello world', { lineLimit: 1 }), 'hello world');
   });
 
   it('Should return multiple lines', () => {
-    assert.strictEqual(head('hello\nworld', 2), 'hello\nworld');
-    assert.strictEqual(head('hello\n\nworld', 3), 'hello\n\nworld');
+    assert.strictEqual(head('hello\nworld', {
+      lineLimit: 2
+    }), 'hello\nworld');
+
+    assert.strictEqual(head('hello\n\nworld', {
+      lineLimit: 3
+    }), 'hello\n\nworld');
   });
 
   it('Should return given line count', () => {
-    assert.strictEqual(head('hello\nworld', 1), 'hello');
-    assert.strictEqual(head('hello\nworld\nhi', 2), 'hello\nworld');
-    assert.strictEqual(head('hello\n\nhi', 2), 'hello\n');
+    assert.strictEqual(head('hello\nworld', { lineLimit: 1 }), 'hello');
+
+    assert.strictEqual(head('hello\nworld\nhi', {
+      lineLimit: 2
+    }), 'hello\nworld');
+
+    assert.strictEqual(head('hello\n\nhi', { lineLimit: 2 }), 'hello\n');
   });
 });
 

@@ -4,7 +4,6 @@
 - [ ] Investigate about -c option
 - [ ] Implement -c option
 - [ ] Consider by-default options
-- [ ] Use richer structure for parsing data in head function
 
 **MAYBE**
 
@@ -12,6 +11,7 @@
 
 **DONE**
 
+- [x] Use richer structure for parsing data in head function
 - [x] Consider test file separation
 - [x] Add lib main without any option
 - [x] Move string function in different library
