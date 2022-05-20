@@ -1,8 +1,9 @@
 **TODO**
 
+- [ ] Add test for extractLines function
+- [ ] Move line function in different library
 - [ ] Remove magic number in head function
 - [ ] Consider by-default options
-- [ ] Investigate -n option properly (eg. line count is 0)
 - [ ] Investigate about -c option
 
 **MAYBE**
@@ -11,6 +12,8 @@
 
 **DONE**
 
+- [x] Extract logical part in a function 
+- [x] Investigate -n option properly (eg. line count is 0)
 - [x] Extract function split and join
 - [x] Implement line limit in head
 - [x] Update README with option --help
