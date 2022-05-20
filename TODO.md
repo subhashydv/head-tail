@@ -4,7 +4,6 @@
 - [ ] Investigate about -c option
 - [ ] Implement -c option
 - [ ] Consider by-default options
-- [ ] Consider test file separation
 - [ ] Use richer structure for parsing data in head function
 
 **MAYBE**
@@ -13,6 +12,7 @@
 
 **DONE**
 
+- [x] Consider test file separation
 - [x] Add lib main without any option
 - [x] Move string function in different library
 - [x] Add test for extractLines function
