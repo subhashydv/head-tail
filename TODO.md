@@ -4,10 +4,10 @@
 - [ ] Investigate -n option properly (eg. line count is 0)
 - [ ] Investigate about -c option
 - [ ] Update README with option --help
-- [ ] Implement line limit in head
 
 **DONE**
 
+- [x] Implement line limit in head
 - [x] Implement head for `multiple lines`
 - [x] Use strictEqual instead of deepEqual
 - [x] Implement head for only `single line`
