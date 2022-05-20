@@ -7,5 +7,11 @@ const head = (content, limit) => {
   return joinLines(extractLines(lines, limit));
 };
 
+const headMain = (readFileSync, fileName) => {
+  const content = readFileSync(fileName, 'utf8');
+  return head(content, 1);
+};
+
 exports.head = head;
 exports.extractLines = extractLines;
+exports.headMain = headMain;

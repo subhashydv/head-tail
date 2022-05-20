@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { head, extractLines } = require('../src/headLib.js');
+const { head, extractLines, headMain } = require('../src/headLib.js');
 
 describe('head', () => {
   it('Should return single line', () => {
@@ -35,5 +35,23 @@ describe('extractLines', () => {
 
   it('Should return list if specified number is more than element', () => {
     assert.deepStrictEqual(extractLines([1, 2, 3], 5), [1, 2, 3]);
+  });
+});
+
+const mockReadFile = function (content, file, expectedEncoding) {
+  return function (fileName, encoding) {
+    assert.equal(fileName, file);
+    assert.equal(encoding, expectedEncoding);
+    return content;
+  };
+};
+
+describe('headMain', () => {
+  it('Should return file first line of file content', () => {
+    let mocker = mockReadFile('hello', 'content.txt', 'utf8');
+    assert.strictEqual(headMain(mocker, 'content.txt'), 'hello');
+
+    mocker = mockReadFile('hello\nworld', 'content.txt', 'utf8');
+    assert.strictEqual(headMain(mocker, 'content.txt'), 'hello');
   });
 });
