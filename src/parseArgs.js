@@ -2,20 +2,36 @@ const isContainsBothOption = args => {
   return args.includes('-n') && args.includes('-c');
 };
 
-const parseArgs = args => {
-  if (isContainsBothOption(args)) {
-    throw { message: 'can not combine line and byte counts' };
-  }
+const fileList = args => {
+  const firstFile = args.find((element) => /^[^-\d]/.test(element));
+  const indexOfFirstFile = args.indexOf(firstFile);
+  return args.slice(indexOfFirstFile);
+};
 
+const option = args => {
   const keys = { '-n': 'line', '-c': 'byte' };
   const options = { switch: 'line', value: 10 };
 
-  for (let index = 0; index < args.length - 1; index += 2) {
-    const [option, value] = args.slice(index, index + 2);
-    options.switch = keys[option];
-    options.value = value;
+  let index = 0;
+  while (args[index] === '-n' || args[index] === '-c') {
+    options.switch = keys[args[index]];
+    options.value = args[index + 1];
+    index += 2;
   }
-  return { options, fileName: args[args.length - 1] };
+  return options;
+};
+
+const parseArgs = args => {
+  if (isContainsBothOption(args)) {
+    throw {
+      type: 'optionError',
+      message: 'head: can\'t combine line and byte counts'
+    };
+  }
+
+  const options = option(args);
+  const files = fileList(args);
+  return { options, fileName: files[0] };
 };
 
 exports.parseArgs = parseArgs;

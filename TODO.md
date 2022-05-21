@@ -1,8 +1,8 @@
 **TODO**
 
 - [ ] Remove magic number in head function
-- [ ] Consider by-default options
 - [ ] Consider alternate contract for parse function
+- [ ] Add functionality for multiple files in parsing
 
 **MAYBE**
 
@@ -11,6 +11,8 @@
 
 **DONE**
 
+- [x] Extract function for options and fileList from parser
+- [x] Consider by-default options
 - [x] Connect parser with main
 - [x] Make parser function deal with both options together
 - [x] Use try catch in headMain

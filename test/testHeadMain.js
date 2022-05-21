@@ -21,7 +21,7 @@ describe('headMain', () => {
     const mocker = mockReadFile('hello', 'content.txt', 'utf8');
     assert.throws(() => headMain(mocker, 'abc.txt'), {
       type: 'readFileError',
-      message: 'can not read abc.txt'
+      message: 'No such file or directory'
     });
   });
 });

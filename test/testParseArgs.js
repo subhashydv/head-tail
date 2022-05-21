@@ -54,7 +54,7 @@ describe('parseArgs', () => {
 
   it('Should throw error when both option parsed', () => {
     assert.throws(() => parseArgs(['-n', 1, '-c', 3, 'a.txt']), {
-      message: 'can not combine line and byte counts'
+      message: 'head: can\'t combine line and byte counts'
     });
   });
 });

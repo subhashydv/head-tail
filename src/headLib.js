@@ -19,7 +19,7 @@ const headMain = (readFileSync, ...args) => {
   } catch (error) {
     throw {
       type: 'readFileError',
-      message: `can not read ${fileName}`
+      message: 'No such file or directory'
     };
   }
   return head(content, options);
