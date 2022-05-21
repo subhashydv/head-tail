@@ -16,4 +16,12 @@ describe('headMain', () => {
     mocker = mockReadFile('hello\nworld', 'content.txt', 'utf8');
     assert.strictEqual(headMain(mocker, 'content.txt'), 'hello\nworld');
   });
+
+  it('Should throw error if unable to read file', () => {
+    const mocker = mockReadFile('hello', 'content.txt', 'utf8');
+    assert.throws(() => headMain(mocker, 'abc.txt'), {
+      type: 'readFileError',
+      message: 'can not read abc.txt'
+    });
+  });
 });

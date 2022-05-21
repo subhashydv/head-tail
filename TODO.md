@@ -13,6 +13,7 @@
 
 **DONE**
 
+- [x] Use try catch in headMain
 - [x] Extract function for bytes character
 - [x] Change name of function sliceFromStart
 - [x] Abstract line and character option in headMain

@@ -1,3 +1,4 @@
+const { parseArgs } = require('./parseArgs');
 const {
   splitLines, joinLines, extractLines, extractBytes
 } = require('./stringUtils');
@@ -10,9 +11,18 @@ const head = (content, option) => {
   return joinLines(extractLines(lines, option.value));
 };
 
-const headMain = (readFileSync, fileName) => {
-  const content = readFileSync(fileName, 'utf8');
-  return head(content, { switch: 'line', value: 10 });
+const headMain = (readFileSync, ...args) => {
+  const { fileName, options } = parseArgs(args);
+  let content;
+  try {
+    content = readFileSync(fileName, 'utf8');
+  } catch (error) {
+    throw {
+      type: 'readFileError',
+      message: `can not read ${fileName}`
+    };
+  }
+  return head(content, options);
 };
 
 exports.head = head;
