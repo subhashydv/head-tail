@@ -31,7 +31,7 @@ const parseArgs = args => {
 
   const options = option(args);
   const files = fileList(args);
-  return { options, fileName: files[0] };
+  return { options, fileName: files };
 };
 
 exports.parseArgs = parseArgs;

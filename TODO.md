@@ -3,6 +3,9 @@
 - [ ] Remove magic number in head function
 - [ ] Consider alternate contract for parse function
 - [ ] Add functionality for multiple files in parsing
+- [ ] Add test for function option
+- [ ] Add test for function fileList
+- [ ] Change contract of headMain for fileList
 
 **MAYBE**
 
@@ -11,6 +14,7 @@
 
 **DONE**
 
+- [x] Change contract of parser
 - [x] Extract function for options and fileList from parser
 - [x] Consider by-default options
 - [x] Connect parser with main
