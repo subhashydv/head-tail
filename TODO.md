@@ -3,7 +3,7 @@
 - [ ] Remove magic number in head function
 - [ ] Consider by-default options
 - [ ] Extract function for bytes character
-- [ ] Add parser function
+- [ ] Make parser function deal with different options
 
 **MAYBE**
 
@@ -12,6 +12,8 @@
 
 **DONE**
 
+- [x] Make parser works for -c option
+- [x] Add parser function
 - [x] Take input from command line without option
 - [x] Change headMain function default contract to 10 line
 - [x] Change switch name

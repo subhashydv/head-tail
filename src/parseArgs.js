@@ -1,10 +1,13 @@
 const parseArgs = args => {
-  const fileName = args[args.length - 1];
-  const option = args[0] === '-n' ? 'line' : 'byte';
-  const options = {
-    value: args[1], switch: option, fileName
-  };
-  return options;
+  const keys = { '-n': 'line', '-c': 'byte' };
+  const options = { switch: 'line', value: 10 };
+
+  for (let index = 0; index < args.length - 1; index += 2) {
+    const [option, value] = args.slice(index, index + 2);
+    options.switch = keys[option];
+    options.value = value;
+  }
+  return { options, fileName: args[args.length - 1] };
 };
 
 exports.parseArgs = parseArgs;
