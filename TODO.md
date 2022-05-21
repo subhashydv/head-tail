@@ -2,9 +2,9 @@
 
 - [ ] Remove magic number in head function
 - [ ] Consider by-default options
-- [ ] Extract function for bytes character
 - [ ] Make parser function deal with different options
 - [ ] Connect parser with main
+- [ ] Consider alternate contract for parse function
 
 **MAYBE**
 
@@ -13,6 +13,8 @@
 
 **DONE**
 
+- [x] Extract function for bytes character
+- [x] Change name of function sliceFromStart
 - [x] Abstract line and character option in headMain
 - [x] Make parser works for -c option
 - [x] Add parser function
