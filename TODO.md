@@ -2,7 +2,6 @@
 
 - [ ] Remove magic number in head function
 - [ ] Consider by-default options
-- [ ] Connect parser with main
 - [ ] Consider alternate contract for parse function
 
 **MAYBE**
@@ -12,6 +11,7 @@
 
 **DONE**
 
+- [x] Connect parser with main
 - [x] Make parser function deal with both options together
 - [x] Use try catch in headMain
 - [x] Extract function for bytes character
