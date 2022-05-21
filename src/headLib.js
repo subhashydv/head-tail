@@ -8,7 +8,7 @@ const head = (content, option) => {
 
 const headMain = (readFileSync, fileName) => {
   const content = readFileSync(fileName, 'utf8');
-  return head(content, { switch: 'line', value: 1 });
+  return head(content, { switch: 'line', value: 10 });
 };
 
 exports.head = head;

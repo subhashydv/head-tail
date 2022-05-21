@@ -14,6 +14,6 @@ describe('headMain', () => {
     assert.strictEqual(headMain(mocker, 'content.txt'), 'hello');
 
     mocker = mockReadFile('hello\nworld', 'content.txt', 'utf8');
-    assert.strictEqual(headMain(mocker, 'content.txt'), 'hello');
+    assert.strictEqual(headMain(mocker, 'content.txt'), 'hello\nworld');
   });
 });

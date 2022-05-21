@@ -12,6 +12,8 @@
 
 **DONE**
 
+- [x] Take input from command line without option
+- [x] Change headMain function default contract to 10 line
 - [x] Change switch name
 - [x] Add test for splitLines and joinLines function
 - [x] Move function spliceFromStart to stringUtils.js
