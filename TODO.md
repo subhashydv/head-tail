@@ -3,7 +3,7 @@
 - [ ] Remove magic number in head function
 - [ ] Consider by-default options
 - [ ] Extract function for bytes character
-- [ ] Write parser for input
+- [ ] Add parser function
 
 **MAYBE**
 
@@ -12,6 +12,7 @@
 
 **DONE**
 
+- [x] Change switch name
 - [x] Add test for splitLines and joinLines function
 - [x] Move function spliceFromStart to stringUtils.js
 - [x] Change structure for option object

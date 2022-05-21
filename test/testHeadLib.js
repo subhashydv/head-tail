@@ -3,34 +3,34 @@ const { head } = require('../src/headLib.js');
 
 describe('head', () => {
   it('Should return single line', () => {
-    assert.strictEqual(head('hello', { switch: 'number', value: 1 }), 'hello');
-    assert.strictEqual(head('world', { switch: 'number', value: 1 }), 'world');
+    assert.strictEqual(head('hello', { switch: 'line', value: 1 }), 'hello');
+    assert.strictEqual(head('world', { switch: 'line', value: 1 }), 'world');
     assert.strictEqual(head('hello world', {
-      switch: 'number', value: 1
+      switch: 'line', value: 1
     }), 'hello world');
   });
 
   it('Should return multiple lines', () => {
     assert.strictEqual(head('hello\nworld', {
-      switch: 'number', value: 2
+      switch: 'line', value: 2
     }), 'hello\nworld');
 
     assert.strictEqual(head('hello\n\nworld', {
-      switch: 'number', value: 3
+      switch: 'line', value: 3
     }), 'hello\n\nworld');
   });
 
   it('Should return given line count', () => {
     assert.strictEqual(head('hello\nworld', {
-      switch: 'number', value: 1
+      switch: 'line', value: 1
     }), 'hello');
 
     assert.strictEqual(head('hello\nworld\nhi', {
-      switch: 'number', value: 2
+      switch: 'line', value: 2
     }), 'hello\nworld');
 
     assert.strictEqual(head('hello\n\nhi', {
-      switch: 'number', value: 2
+      switch: 'line', value: 2
     }), 'hello\n');
   });
 
