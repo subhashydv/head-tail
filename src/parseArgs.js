@@ -1,4 +1,12 @@
+const isContainsBothOption = args => {
+  return args.includes('-n') && args.includes('-c');
+};
+
 const parseArgs = args => {
+  if (isContainsBothOption(args)) {
+    throw { message: 'can not combine line and byte counts' };
+  }
+
   const keys = { '-n': 'line', '-c': 'byte' };
   const options = { switch: 'line', value: 10 };
 

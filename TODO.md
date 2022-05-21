@@ -2,7 +2,6 @@
 
 - [ ] Remove magic number in head function
 - [ ] Consider by-default options
-- [ ] Make parser function deal with different options
 - [ ] Connect parser with main
 - [ ] Consider alternate contract for parse function
 
@@ -13,6 +12,7 @@
 
 **DONE**
 
+- [x] Make parser function deal with both options together
 - [x] Use try catch in headMain
 - [x] Extract function for bytes character
 - [x] Change name of function sliceFromStart
