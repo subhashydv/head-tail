@@ -21,14 +21,14 @@ describe('sliceFromStart', () => {
 
 describe('splitLines', () => {
   it('Should return splitted list', () => {
-    assert.deepEqual(splitLines('a\nb', '\n'), ['a', 'b']);
-    assert.deepEqual(splitLines('cb', ''), ['c', 'b']);
+    assert.deepEqual(splitLines('a\nb'), ['a', 'b']);
+    assert.deepEqual(splitLines('cb'), ['cb']);
   });
 });
 
 describe('joinLines', () => {
   it('Should return joined list as string', () => {
-    assert.strictEqual(joinLines(['a', 'b'], '\n'), 'a\nb');
-    assert.strictEqual(joinLines(['c', 'b'], ''), 'cb');
+    assert.strictEqual(joinLines(['a', 'b']), 'a\nb');
+    assert.strictEqual(joinLines(['cb']), 'cb');
   });
 });

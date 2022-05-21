@@ -4,6 +4,7 @@
 - [ ] Consider by-default options
 - [ ] Extract function for bytes character
 - [ ] Make parser function deal with different options
+- [ ] Connect parser with main
 
 **MAYBE**
 
@@ -12,6 +13,7 @@
 
 **DONE**
 
+- [x] Abstract line and character option in headMain
 - [x] Make parser works for -c option
 - [x] Add parser function
 - [x] Take input from command line without option

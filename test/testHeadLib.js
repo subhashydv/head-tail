@@ -35,12 +35,12 @@ describe('head', () => {
   });
 
   it('Should return specified count of characters', () => {
-    assert.strictEqual(head('hello', { switch: 'character', value: 1 }), 'h');
+    assert.strictEqual(head('hello', { switch: 'byte', value: 1 }), 'h');
     assert.strictEqual(head('hello', {
-      switch: 'character', value: 5
+      switch: 'byte', value: 5
     }), 'hello');
     assert.strictEqual(head('hello\nworld', {
-      switch: 'character', value: 8
+      switch: 'byte', value: 8
     }), 'hello\nwo');
   });
 });

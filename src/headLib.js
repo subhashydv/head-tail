@@ -1,9 +1,12 @@
 const { splitLines, joinLines, sliceFromStart } = require('./stringUtils');
 
 const head = (content, option) => {
-  const separator = option.switch === 'line' ? '\n' : '';
-  const lines = splitLines(content, separator);
-  return joinLines(sliceFromStart(lines, option.value), separator);
+  if (option.switch === 'byte') {
+    return content.slice(0, option.value);
+  }
+
+  const lines = splitLines(content);
+  return joinLines(sliceFromStart(lines, option.value));
 };
 
 const headMain = (readFileSync, fileName) => {
