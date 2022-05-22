@@ -15,11 +15,11 @@ const headMain = (readFileSync, ...args) => {
   const { fileName, options } = parseArgs(args);
   let content;
   try {
-    content = readFileSync(fileName, 'utf8');
+    content = readFileSync(fileName[0], 'utf8');
   } catch (error) {
     throw {
       type: 'readFileError',
-      message: 'No such file or directory'
+      message: `head: ${fileName}: No such file or directory`
     };
   }
   return head(content, options);
