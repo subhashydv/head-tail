@@ -1,19 +1,22 @@
 **TODO**
 
-- [ ] Remove magic number in head function
-- [ ] Consider alternate contract for parse function
-- [ ] Add functionality for multiple files in parsing
+- [ ] Add test for fileReader function
 - [ ] Add test for function option
 - [ ] Add test for function fileList
-- [ ] Change contract of headMain for fileList
+- [ ] Extract head call in a function from headMain
 
 **MAYBE**
 
+- [ ] Consider alternate contract for parse function
 - [ ] Consider alternative for slice in head function
-- [ ] Change the switch name
 
 **DONE**
 
+- [ ] ~~Change the switch name~~
+- [x] Implement headMain for multiple files
+- [x] Change contract of headMain for multiple files
+- [x] Add functionality for multiple files in parsing
+- [x] Remove magic number in head function
 - [x] Make mocker works for multiple files
 - [x] Change message when reader can't read file
 - [x] Change contract of parser

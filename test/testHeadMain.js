@@ -18,21 +18,64 @@ describe('headMain', () => {
       content: 'hello'
     }];
     let mocker = mockReadFile(content, 'utf8');
-    assert.strictEqual(headMain(mocker, 'a.txt'), 'hello');
+    assert.deepStrictEqual(headMain(mocker, 'a.txt'), [{
+      fileName: 'a.txt', content: 'hello',
+      error: false
+    }]);
 
     content = [{
       file: 'a.txt',
       content: 'hello\nworld'
     }];
     mocker = mockReadFile(content, 'utf8');
-    assert.strictEqual(headMain(mocker, 'a.txt'), 'hello\nworld');
+    assert.deepStrictEqual(headMain(mocker, 'a.txt'), [{
+      fileName: 'a.txt', content: 'hello\nworld',
+      error: false
+    }]);
   });
 
-  it('Should throw error if unable to read file', () => {
-    const mocker = mockReadFile('hello', 'content.txt', 'utf8');
-    assert.throws(() => headMain(mocker, 'abc.txt'), {
-      type: 'readFileError',
-      message: 'head: abc.txt: No such file or directory'
-    });
+  it('Should set error status as true when unable to read file', () => {
+    const content = [{
+      file: 'a.txt',
+      content: 'hello'
+    }];
+    const mocker = mockReadFile(content, 'utf8');
+    assert.deepStrictEqual(headMain(mocker, 'c.txt'), [{
+      fileName: 'c.txt', content: undefined,
+      error: true
+    }]);
+  });
+
+  it('Should return the multiple files content', () => {
+    const content = [{
+      file: 'a.txt',
+      content: 'hello'
+    }, {
+      file: 'b.txt',
+      content: 'world'
+    }];
+    const mocker = mockReadFile(content, 'utf8');
+    assert.deepStrictEqual(headMain(mocker, 'a.txt', 'b.txt'), [{
+      fileName: 'a.txt', content: 'hello',
+      error: false
+    }, {
+      fileName: 'b.txt', content: 'world',
+      error: false
+    }]);
+  });
+
+  it('Should return the multiple files content if files exist', () => {
+    const content = [{
+      file: 'a.txt',
+      content: 'hello'
+    }];
+    const mocker = mockReadFile(content, 'utf8');
+    assert.deepStrictEqual(headMain(mocker, 'a.txt', 'c.txt'), [{
+      fileName: 'a.txt', content: 'hello',
+      error: false
+    }, {
+      fileName: 'c.txt', content: undefined,
+      error: true
+    }]);
   });
 });

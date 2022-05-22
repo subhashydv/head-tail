@@ -11,18 +11,32 @@ const head = (content, option) => {
   return joinLines(extractLines(lines, option.value));
 };
 
+const fileReader = function (file) {
+  let content;
+  let errorStatus = false;
+  try {
+    content = this(file, 'utf8');
+  } catch (error) {
+    errorStatus = true;
+  }
+  return {
+    fileName: file,
+    content,
+    error: errorStatus
+  };
+};
+
 const headMain = (readFileSync, ...args) => {
   const { fileName, options } = parseArgs(args);
-  let content;
-  try {
-    content = readFileSync(fileName[0], 'utf8');
-  } catch (error) {
-    throw {
-      type: 'readFileError',
-      message: `head: ${fileName}: No such file or directory`
-    };
-  }
-  return head(content, options);
+  const readFile = fileReader.bind(readFileSync);
+  const files = fileName.map(readFile);
+
+  return files.map((file) => {
+    if (!file.error) {
+      file.content = head(file.content, options);
+    }
+    return file;
+  });
 };
 
 exports.head = head;
