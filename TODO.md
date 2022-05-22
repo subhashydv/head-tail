@@ -14,6 +14,7 @@
 
 **DONE**
 
+- [x] Make mocker works for multiple files
 - [x] Change message when reader can't read file
 - [x] Change contract of parser
 - [x] Extract function for options and fileList from parser
