@@ -41,7 +41,7 @@ const fileList = args => {
   return args.slice(indexOfFirstFile);
 };
 
-const option = args => {
+const structureOption = args => {
   const keys = { '-n': 'line', '-c': 'byte' };
   const options = { switch: 'line', value: 10 };
 
@@ -68,11 +68,11 @@ const popArgs = (args, argsToPop) => {
 const parseArgs = args => {
   const formatedArgs = formatArgs(args);
   const files = fileList(formatedArgs);
-  const opt = popArgs(formatedArgs, files);
-  validateOptions(opt);
+  const option = popArgs(formatedArgs, files);
+  validateOptions(option);
 
-  isContainsBothOption(opt);
-  const structuredOptions = option(formatedArgs);
+  isContainsBothOption(option);
+  const structuredOptions = structureOption(formatedArgs);
   return { options: structuredOptions, fileName: files };
 };
 
