@@ -20,10 +20,22 @@ const fileReader = function (file) {
     errorStatus = true;
   }
   return {
-    fileName: file,
+    name: file,
     content,
     error: errorStatus
   };
+};
+
+const printOutput = (log, error, files) => {
+  for (let index = 0; index < files.length; index++) {
+    const fileName = files.length > 1 ? `==> ${files[index].name} <==\n` : '';
+
+    if (files[index].error) {
+      error(`head: ${files[index].name}: No such file or directory`);
+    } else {
+      log(`${fileName}${files[index].content}`);
+    }
+  }
 };
 
 const headMain = (readFileSync, ...args) => {
@@ -41,3 +53,4 @@ const headMain = (readFileSync, ...args) => {
 
 exports.head = head;
 exports.headMain = headMain;
+exports.printOutput = printOutput;

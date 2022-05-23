@@ -19,7 +19,7 @@ describe('headMain', () => {
     }];
     let mocker = mockReadFile(content, 'utf8');
     assert.deepStrictEqual(headMain(mocker, 'a.txt'), [{
-      fileName: 'a.txt', content: 'hello',
+      name: 'a.txt', content: 'hello',
       error: false
     }]);
 
@@ -29,7 +29,7 @@ describe('headMain', () => {
     }];
     mocker = mockReadFile(content, 'utf8');
     assert.deepStrictEqual(headMain(mocker, 'a.txt'), [{
-      fileName: 'a.txt', content: 'hello\nworld',
+      name: 'a.txt', content: 'hello\nworld',
       error: false
     }]);
   });
@@ -41,7 +41,7 @@ describe('headMain', () => {
     }];
     const mocker = mockReadFile(content, 'utf8');
     assert.deepStrictEqual(headMain(mocker, 'c.txt'), [{
-      fileName: 'c.txt', content: undefined,
+      name: 'c.txt', content: undefined,
       error: true
     }]);
   });
@@ -56,10 +56,10 @@ describe('headMain', () => {
     }];
     const mocker = mockReadFile(content, 'utf8');
     assert.deepStrictEqual(headMain(mocker, 'a.txt', 'b.txt'), [{
-      fileName: 'a.txt', content: 'hello',
+      name: 'a.txt', content: 'hello',
       error: false
     }, {
-      fileName: 'b.txt', content: 'world',
+      name: 'b.txt', content: 'world',
       error: false
     }]);
   });
@@ -71,10 +71,10 @@ describe('headMain', () => {
     }];
     const mocker = mockReadFile(content, 'utf8');
     assert.deepStrictEqual(headMain(mocker, 'a.txt', 'c.txt'), [{
-      fileName: 'a.txt', content: 'hello',
+      name: 'a.txt', content: 'hello',
       error: false
     }, {
-      fileName: 'c.txt', content: undefined,
+      name: 'c.txt', content: undefined,
       error: true
     }]);
   });

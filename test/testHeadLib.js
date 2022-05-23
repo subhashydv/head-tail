@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { head } = require('../src/headLib.js');
+const { head, printOutput } = require('../src/headLib.js');
 
 describe('head', () => {
   it('Should return single line', () => {
@@ -42,5 +42,35 @@ describe('head', () => {
     assert.strictEqual(head('hello\nworld', {
       switch: 'byte', value: 8
     }), 'hello\nwo');
+  });
+});
+
+const mockLog = function (expectedArgs) {
+  return function (args) {
+    assert.equal(args, expectedArgs);
+  };
+};
+
+const mockError = function (expectedArgs) {
+  return function (args) {
+    assert.equal(args, expectedArgs);
+  };
+};
+
+describe('printOutput', () => {
+  it('Should print the file content on stdOut', () => {
+    const log = mockLog('hello');
+    const error = mockError('abc');
+    assert.equal(printOutput(log, error, [{
+      name: 'a.txt', content: 'hello', error: false
+    }]), undefined);
+  });
+
+  it('Should print the file content on stdError', () => {
+    const log = mockLog('hello');
+    const error = mockError('head: a.txt: No such file or directory');
+    assert.equal(printOutput(log, error, [{
+      name: 'a.txt', content: 'abc', error: true
+    }]), undefined);
   });
 });

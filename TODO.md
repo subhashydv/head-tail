@@ -3,7 +3,6 @@
 - [ ] Add test for fileReader function
 - [ ] Add test for function option
 - [ ] Extract head call in a function from headMain
-- [ ] Add print output function
 - [ ] Add format output function
 **MAYBE**
 
@@ -12,6 +11,7 @@
 
 **DONE**
 
+- [x] Add print output function
 - [x] Add usage option
 - [x] Add test for function fileList
 - [ ] ~~Change the switch name~~
