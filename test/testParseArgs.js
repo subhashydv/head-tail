@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { parseArgs, fileList } = require('../src/parseArgs.js');
+const { parseArgs, fileList, formatArgs } = require('../src/parseArgs.js');
 
 describe('parseArgs', () => {
   it('Should return object with line option and file name', () => {
@@ -80,5 +80,22 @@ describe('fileList', () => {
     assert.throws(() => fileList(['-c', 3]), {
       message: 'usage: head [-n lines | -c bytes] [file ...]'
     });
+  });
+});
+
+describe('formatArgs', () => {
+  it('Should return switch and value separated list', () => {
+    assert.deepStrictEqual(formatArgs(['-n1']), ['-n', 1]);
+    assert.deepStrictEqual(formatArgs(['-n1', 'a.txt']), ['-n', 1, 'a.txt']);
+  });
+
+  it('Should return list when numbers are mixed', () => {
+    assert.deepStrictEqual(formatArgs(['-n1', 2]), ['-n', 1, 2]);
+    assert.deepStrictEqual(formatArgs(['-c1', 2, 'a']), ['-c', 1, 2, 'a']);
+  });
+
+  it('Should return list when switch and value are already separated', () => {
+    assert.deepStrictEqual(formatArgs(['-n', 1]), ['-n', 1]);
+    assert.deepStrictEqual(formatArgs(['-c1', 2, 'a']), ['-c', 1, 2, 'a']);
   });
 });

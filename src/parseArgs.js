@@ -25,6 +25,12 @@ const option = args => {
   return options;
 };
 
+const formatArgs = args => {
+  return args.flatMap((arg) => {
+    return /^-../.test(arg) ? [arg.slice(0, 2), +arg.slice(2)] : arg;
+  });
+};
+
 const parseArgs = args => {
   if (isContainsBothOption(args)) {
     throw {
@@ -40,3 +46,4 @@ const parseArgs = args => {
 
 exports.parseArgs = parseArgs;
 exports.fileList = fileList;
+exports.formatArgs = formatArgs;

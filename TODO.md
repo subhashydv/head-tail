@@ -4,6 +4,7 @@
 - [ ] Add test for function option
 - [ ] Extract head call in a function from headMain
 - [ ] Add format output function
+- [ ] Make parser function works for switch and value combine
 **MAYBE**
 
 - [ ] Consider alternate contract for parse function
@@ -11,6 +12,7 @@
 
 **DONE**
 
+- [x] Add a format args function
 - [x] Add print output function
 - [x] Add usage option
 - [x] Add test for function fileList
