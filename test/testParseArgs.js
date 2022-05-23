@@ -67,6 +67,16 @@ describe('parseArgs', () => {
       fileName: ['a.txt', 'b.txt']
     });
   });
+
+  it('Should return content when switch and value are combine(-n1)', () => {
+    assert.deepStrictEqual(parseArgs(['-n1', 'a.txt']), {
+      options: {
+        value: 1,
+        switch: 'line'
+      },
+      fileName: ['a.txt']
+    });
+  });
 });
 
 describe('fileList', () => {

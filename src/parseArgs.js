@@ -32,15 +32,16 @@ const formatArgs = args => {
 };
 
 const parseArgs = args => {
-  if (isContainsBothOption(args)) {
+  const formatedArgs = formatArgs(args);
+  if (isContainsBothOption(formatedArgs)) {
     throw {
       type: 'optionError',
       message: 'head: can\'t combine line and byte counts'
     };
   }
 
-  const options = option(args);
-  const files = fileList(args);
+  const options = option(formatedArgs);
+  const files = fileList(formatedArgs);
   return { options, fileName: files };
 };
 
