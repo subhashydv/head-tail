@@ -16,6 +16,7 @@ const isValidValue = (value) => {
 };
 
 const validateOptions = args => {
+  isContainsBothOption(args);
   for (let index = 0; index < args.length; index += 2) {
     if (!isValidOption(args[index])) {
       throw {
@@ -71,7 +72,7 @@ const parseArgs = args => {
   const option = popArgs(formatedArgs, files);
   validateOptions(option);
 
-  isContainsBothOption(option);
+  // isContainsBothOption(option);
   const structuredOptions = structureOption(formatedArgs);
   return { options: structuredOptions, fileName: files };
 };
