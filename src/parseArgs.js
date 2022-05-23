@@ -2,6 +2,30 @@ const isContainsBothOption = args => {
   return args.includes('-n') && args.includes('-c');
 };
 
+const isValidOption = (option) => {
+  return option === '-n' || option === '-c';
+};
+
+const isValidValue = (value) => {
+  return isFinite(value) && value > 0;
+};
+
+const validateOptions = args => {
+  for (let index = 0; index < args.length; index += 2) {
+    if (!isValidOption(args[index])) {
+      throw {
+        // eslint-disable-next-line max-len
+        message: `head: illegal option -- ${args[index]}\nusage: head [-n lines | -c bytes] [file ...]`
+      };
+    }
+    if (!isValidValue(args[index + 1])) {
+      throw {
+        message: `head: illegal line count -- ${args[index + 1]}`
+      };
+    }
+  }
+};
+
 const fileList = args => {
   const firstFile = args.find((element) => /^[^-\d]/.test(element));
   if (!firstFile) {
@@ -35,7 +59,7 @@ const parseArgs = args => {
   const formatedArgs = formatArgs(args);
   if (isContainsBothOption(formatedArgs)) {
     throw {
-      type: 'optionError',
+      type: 'combineOptionError',
       message: 'head: can\'t combine line and byte counts'
     };
   }
@@ -48,3 +72,4 @@ const parseArgs = args => {
 exports.parseArgs = parseArgs;
 exports.fileList = fileList;
 exports.formatArgs = formatArgs;
+exports.validateOptions = validateOptions;

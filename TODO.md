@@ -12,6 +12,7 @@
 
 **DONE**
 
+- [x] Add validate option function
 - [x] Make parser function works for switch and value combine
 - [x] Add a format args function
 - [x] Add print output function

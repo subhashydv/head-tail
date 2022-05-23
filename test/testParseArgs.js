@@ -1,5 +1,7 @@
 const assert = require('assert');
-const { parseArgs, fileList, formatArgs } = require('../src/parseArgs.js');
+const {
+  parseArgs, fileList, formatArgs, validateOptions
+} = require('../src/parseArgs.js');
 
 describe('parseArgs', () => {
   it('Should return object with line option and file name', () => {
@@ -107,5 +109,42 @@ describe('formatArgs', () => {
   it('Should return list when switch and value are already separated', () => {
     assert.deepStrictEqual(formatArgs(['-n', 1]), ['-n', 1]);
     assert.deepStrictEqual(formatArgs(['-c1', 2, 'a']), ['-c', 1, 2, 'a']);
+  });
+});
+
+describe('validateOptions', () => {
+  it('Should not return anything if options are valid', () => {
+    assert.strictEqual(validateOptions(['-n', 2]), undefined);
+    assert.strictEqual(validateOptions(['-n', 2, '-n', 4]), undefined);
+  });
+
+  it('Should throw error when illegal option is given', () => {
+    assert.throws(() => validateOptions(['-n', 2, '-v', 4]), {
+      message: 'head: illegal option -- -v\nusage: head [-n lines | -c bytes] [file ...]'
+    });
+  });
+
+  it('Should throw error when illegal option is given', () => {
+    assert.throws(() => validateOptions(['-v', 4]), {
+      message: 'head: illegal option -- -v\nusage: head [-n lines | -c bytes] [file ...]'
+    });
+  });
+
+  it('Should throw error when illegal value is given', () => {
+    assert.throws(() => validateOptions(['-n', '-v']), {
+      message: 'head: illegal line count -- -v'
+    });
+
+    assert.throws(() => validateOptions(['-n', 'hello']), {
+      message: 'head: illegal line count -- hello'
+    });
+
+    assert.throws(() => validateOptions(['-n', '-4']), {
+      message: 'head: illegal line count -- -4'
+    });
+
+    assert.throws(() => validateOptions(['-n', '0']), {
+      message: 'head: illegal line count -- 0'
+    });
   });
 });

@@ -6,5 +6,5 @@ const { log, error } = console;
 try {
   printOutput(log, error, headMain(readFileSync, ...process.argv.slice(2)));
 } catch (error) {
-  console.log(error.message);
+  console.error(error.message);
 }
