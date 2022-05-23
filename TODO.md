@@ -12,6 +12,7 @@
 
 **DONE**
 
+- [x] Add usage option
 - [x] Add test for function fileList
 - [ ] ~~Change the switch name~~
 - [x] Implement headMain for multiple files

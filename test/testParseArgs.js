@@ -33,7 +33,7 @@ describe('parseArgs', () => {
   });
 
   it('Should return last line option when multiple line option given', () => {
-    assert.deepStrictEqual(parseArgs(['-n', 1, '-n', 3, 'a.txt']), {
+    assert.deepEqual(parseArgs(['-n', 1, '-n', 3, 'a.txt']), {
       options: {
         value: 3,
         switch: 'line'
@@ -74,6 +74,11 @@ describe('fileList', () => {
     assert.deepEqual(fileList(['-n', 1, 'a.txt']), ['a.txt']);
   });
   it('Should return list of file names', () => {
-    assert.deepEqual(fileList(['-c', 0, 'a.txt', 'b.txt']), ['a.txt', 'b.txt']);
+    assert.deepEqual(fileList(['-c', 8, 'a.txt', 'b.txt']), ['a.txt', 'b.txt']);
+  });
+  it('Should throw error when file is not present', () => {
+    assert.throws(() => fileList(['-c', 3]), {
+      message: 'usage: head [-n lines | -c bytes] [file ...]'
+    });
   });
 });

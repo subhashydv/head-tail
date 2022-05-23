@@ -4,6 +4,10 @@ const isContainsBothOption = args => {
 
 const fileList = args => {
   const firstFile = args.find((element) => /^[^-\d]/.test(element));
+  if (!firstFile) {
+    throw { message: 'usage: head [-n lines | -c bytes] [file ...]' };
+  }
+
   const indexOfFirstFile = args.indexOf(firstFile);
   return args.slice(indexOfFirstFile);
 };
