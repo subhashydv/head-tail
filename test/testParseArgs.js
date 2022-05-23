@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { parseArgs } = require('../src/parseArgs.js');
+const { parseArgs, fileList } = require('../src/parseArgs.js');
 
 describe('parseArgs', () => {
   it('Should return object with line option and file name', () => {
@@ -66,5 +66,14 @@ describe('parseArgs', () => {
       },
       fileName: ['a.txt', 'b.txt']
     });
+  });
+});
+
+describe('fileList', () => {
+  it('Should return file name', () => {
+    assert.deepEqual(fileList(['-n', 1, 'a.txt']), ['a.txt']);
+  });
+  it('Should return list of file names', () => {
+    assert.deepEqual(fileList(['-c', 0, 'a.txt', 'b.txt']), ['a.txt', 'b.txt']);
   });
 });

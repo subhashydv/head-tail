@@ -2,9 +2,9 @@
 
 - [ ] Add test for fileReader function
 - [ ] Add test for function option
-- [ ] Add test for function fileList
 - [ ] Extract head call in a function from headMain
-
+- [ ] Add print output function
+- [ ] Add format output function
 **MAYBE**
 
 - [ ] Consider alternate contract for parse function
@@ -12,6 +12,7 @@
 
 **DONE**
 
+- [x] Add test for function fileList
 - [ ] ~~Change the switch name~~
 - [x] Implement headMain for multiple files
 - [x] Change contract of headMain for multiple files

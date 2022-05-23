@@ -35,3 +35,4 @@ const parseArgs = args => {
 };
 
 exports.parseArgs = parseArgs;
+exports.fileList = fileList;
