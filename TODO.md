@@ -12,6 +12,7 @@
 
 **DONE**
 
+- [x] Connect validate option with parser
 - [x] Add validate option function
 - [x] Make parser function works for switch and value combine
 - [x] Add a format args function

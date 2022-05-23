@@ -1,5 +1,10 @@
 const isContainsBothOption = args => {
-  return args.includes('-n') && args.includes('-c');
+  if (args.includes('-n') && args.includes('-c')) {
+    throw {
+      type: 'combineOptionError',
+      message: 'head: can\'t combine line and byte counts'
+    };
+  }
 };
 
 const isValidOption = (option) => {
@@ -55,18 +60,20 @@ const formatArgs = args => {
   });
 };
 
+const popArgs = (args, argsToPop) => {
+  const limit = args.length - argsToPop.length;
+  return args.slice(0, limit);
+};
+
 const parseArgs = args => {
   const formatedArgs = formatArgs(args);
-  if (isContainsBothOption(formatedArgs)) {
-    throw {
-      type: 'combineOptionError',
-      message: 'head: can\'t combine line and byte counts'
-    };
-  }
-
-  const options = option(formatedArgs);
   const files = fileList(formatedArgs);
-  return { options, fileName: files };
+  const opt = popArgs(formatedArgs, files);
+  validateOptions(opt);
+
+  isContainsBothOption(opt);
+  const structuredOptions = option(formatedArgs);
+  return { options: structuredOptions, fileName: files };
 };
 
 exports.parseArgs = parseArgs;

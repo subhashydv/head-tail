@@ -99,6 +99,7 @@ describe('formatArgs', () => {
   it('Should return switch and value separated list', () => {
     assert.deepStrictEqual(formatArgs(['-n1']), ['-n', 1]);
     assert.deepStrictEqual(formatArgs(['-n1', 'a.txt']), ['-n', 1, 'a.txt']);
+    assert.deepStrictEqual(formatArgs(['-n', 1, 'a.txt']), ['-n', 1, 'a.txt']);
   });
 
   it('Should return list when numbers are mixed', () => {
@@ -116,6 +117,7 @@ describe('validateOptions', () => {
   it('Should not return anything if options are valid', () => {
     assert.strictEqual(validateOptions(['-n', 2]), undefined);
     assert.strictEqual(validateOptions(['-n', 2, '-n', 4]), undefined);
+    assert.strictEqual(validateOptions(['-n', '2']), undefined);
   });
 
   it('Should throw error when illegal option is given', () => {
