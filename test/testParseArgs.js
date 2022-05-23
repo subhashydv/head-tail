@@ -83,13 +83,13 @@ describe('parseArgs', () => {
 
 describe('fileList', () => {
   it('Should return file name', () => {
-    assert.deepEqual(fileList(['-n', 1, 'a.txt']), ['a.txt']);
+    assert.deepEqual(fileList(['-n', 1, 'a.txt'], 2), ['a.txt']);
   });
   it('Should return list of file names', () => {
-    assert.deepEqual(fileList(['-c', 8, 'a.txt', 'b.txt']), ['a.txt', 'b.txt']);
+    assert.deepEqual(fileList(['-c', 8, 'a.txt', 'b.txt'], 2), ['a.txt', 'b.txt']);
   });
   it('Should throw error when file is not present', () => {
-    assert.throws(() => fileList(['-c', 3]), {
+    assert.throws(() => fileList(['-c', 3], 2), {
       message: 'usage: head [-n lines | -c bytes] [file ...]'
     });
   });

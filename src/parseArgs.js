@@ -7,6 +7,21 @@ const isContainsBothOption = args => {
   }
 };
 
+const isOption = (value) => /^-./.test(value);
+
+const getOption = function (args) {
+  let index = 0;
+  const option = [];
+  while (index < args.length && isOption(args[index])) {
+    option.push(args[index]);
+    if (args[index + 1]) {
+      option.push(args[index + 1]);
+    }
+    index += 2;
+  };
+  return option;
+};
+
 const isValidOption = (option) => {
   return option === '-n' || option === '-c';
 };
@@ -34,14 +49,12 @@ const validateOptions = args => {
   isContainsBothOption(args);
 };
 
-const fileList = args => {
-  const firstFile = args.find((element) => /^[^-\d]/.test(element));
-  if (!firstFile) {
+const fileList = (args, index) => {
+  const files = args.slice(index);
+  if (files.length === 0) {
     throw { message: 'usage: head [-n lines | -c bytes] [file ...]' };
   }
-
-  const indexOfFirstFile = args.indexOf(firstFile);
-  return args.slice(indexOfFirstFile);
+  return files;
 };
 
 const structureOption = args => {
@@ -60,15 +73,10 @@ const splitArgs = args => {
   });
 };
 
-const popArgs = (args, argsToPop) => {
-  const limit = args.length - argsToPop.length;
-  return args.slice(0, limit);
-};
-
 const parseArgs = args => {
   const splittedArgs = splitArgs(args);
-  const files = fileList(splittedArgs);
-  const option = popArgs(splittedArgs, files);
+  const option = getOption(splittedArgs);
+  const files = fileList(splittedArgs, option.length);
   validateOptions(option);
 
   const structuredOptions = structureOption(option);

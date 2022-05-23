@@ -12,6 +12,7 @@
 
 **DONE**
 
+- [x] First find the option in parser
 - [x] Move all validation in validateOption function
 - [x] Connect validate option with parser
 - [x] Add validate option function
