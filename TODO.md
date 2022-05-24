@@ -2,11 +2,11 @@
 
 **TODO**
 
-- [ ] Extract line function in different file
 - [ ] Implement byte option (-c)
 
 **DONE**
 
+- [x] Extract line function in different file
 - [x] Implement -n option
 - [x] Make tail works for multiple lines
 - [x] Start with tail function

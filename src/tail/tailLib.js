@@ -1,7 +1,9 @@
+const { splitLines, joinLines, sliceLines } = require('./stringUtils.js');
+
 const tail = (content, count) => {
-  const lines = content.split('\n');
-  const reqLine = lines.slice(lines.length - count);
-  return reqLine.join('\n');
+  const lines = splitLines(content);
+  const limit = lines.length - count;
+  return joinLines(sliceLines(lines, limit));
 };
 
 exports.tail = tail;
