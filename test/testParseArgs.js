@@ -1,6 +1,6 @@
 const assert = require('assert');
 const {
-  parseArgs, fileList, formatArgs, validateOptions
+  parseArgs, fileList, splitArgs, validateOptions, getOption
 } = require('../src/parseArgs.js');
 
 describe('parseArgs', () => {
@@ -79,6 +79,16 @@ describe('parseArgs', () => {
       fileName: ['a.txt']
     });
   });
+
+  it('Should return content with -n switch when only value is given', () => {
+    assert.deepStrictEqual(parseArgs(['-1', 'a.txt']), {
+      options: {
+        value: 1,
+        switch: 'line'
+      },
+      fileName: ['a.txt']
+    });
+  });
 });
 
 describe('fileList', () => {
@@ -95,21 +105,26 @@ describe('fileList', () => {
   });
 });
 
-describe('formatArgs', () => {
+describe('splitArgs', () => {
   it('Should return switch and value separated list', () => {
-    assert.deepStrictEqual(formatArgs(['-n1']), ['-n', 1]);
-    assert.deepStrictEqual(formatArgs(['-n1', 'a.txt']), ['-n', 1, 'a.txt']);
-    assert.deepStrictEqual(formatArgs(['-n', 1, 'a.txt']), ['-n', 1, 'a.txt']);
+    assert.deepStrictEqual(splitArgs(['-n1']), ['-n', 1]);
+    assert.deepStrictEqual(splitArgs(['-n1', 'a.txt']), ['-n', 1, 'a.txt']);
+    assert.deepStrictEqual(splitArgs(['-n', 1, 'a.txt']), ['-n', 1, 'a.txt']);
   });
 
   it('Should return list when numbers are mixed', () => {
-    assert.deepStrictEqual(formatArgs(['-n1', 2]), ['-n', 1, 2]);
-    assert.deepStrictEqual(formatArgs(['-c1', 2, 'a']), ['-c', 1, 2, 'a']);
+    assert.deepStrictEqual(splitArgs(['-n1', 2]), ['-n', 1, 2]);
+    assert.deepStrictEqual(splitArgs(['-c1', 2, 'a']), ['-c', 1, 2, 'a']);
   });
 
   it('Should return list when switch and value are already separated', () => {
-    assert.deepStrictEqual(formatArgs(['-n', 1]), ['-n', 1]);
-    assert.deepStrictEqual(formatArgs(['-c1', 2, 'a']), ['-c', 1, 2, 'a']);
+    assert.deepStrictEqual(splitArgs(['-n', 1]), ['-n', 1]);
+    assert.deepStrictEqual(splitArgs(['-c1', 2, 'a']), ['-c', 1, 2, 'a']);
+  });
+
+  it('Should return value with option -n when only value given', () => {
+    assert.deepStrictEqual(splitArgs([1]), ['-n', 1]);
+    assert.deepStrictEqual(splitArgs(['-1', '-n', 2]), ['-n', 1, '-n', 2]);
   });
 });
 
@@ -148,5 +163,13 @@ describe('validateOptions', () => {
     assert.throws(() => validateOptions(['-n', '0']), {
       message: 'head: illegal line count -- 0'
     });
+  });
+});
+
+describe('getOption', () => {
+  it('Should return options when file is given', () => {
+    assert.deepStrictEqual(getOption(['-n', 5, 'a.txt']), ['-n', 5]);
+    assert.deepStrictEqual(getOption(['-n', 5, 3, 'a.txt']), ['-n', 5]);
+    assert.deepStrictEqual(getOption(['-n', 5, -3, 'a.txt']), ['-n', 5, -3, 'a.txt']);
   });
 });

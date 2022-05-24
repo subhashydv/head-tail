@@ -31,10 +31,11 @@ const validateOption = (option) => {
   }
 };
 
-const validateValue = (value) => {
+const validateValue = (value, key) => {
+  const options = { '-n': 'line', '-c': 'byte' };
   if (!isFinite(value) || value < 1) {
     throw {
-      message: `head: illegal line count -- ${value}`
+      message: `head: illegal ${options[key]} count -- ${value}`
     };
   }
 };
@@ -43,7 +44,7 @@ const validateOptions = args => {
   let index = 0;
   while (index < args.length) {
     validateOption(args[index]);
-    validateValue(args[index + 1]);
+    validateValue(args[index + 1], args[index]);
     index += 2;
   }
   isContainsBothOption(args);
@@ -68,9 +69,15 @@ const structureOption = args => {
 };
 
 const splitArgs = args => {
-  return args.flatMap((arg) => {
+  const splittedArgs = [...args];
+  if (isFinite(splittedArgs[0])) {
+    splittedArgs.splice(0, 1, '-n', Math.abs(args[0]));
+  }
+
+  return splittedArgs.flatMap((arg) => {
     return /^-../.test(arg) ? [arg.slice(0, 2), +arg.slice(2)] : arg;
   });
+
 };
 
 const parseArgs = args => {
@@ -85,5 +92,6 @@ const parseArgs = args => {
 
 exports.parseArgs = parseArgs;
 exports.fileList = fileList;
-exports.formatArgs = splitArgs;
+exports.splitArgs = splitArgs;
 exports.validateOptions = validateOptions;
+exports.getOption = getOption;

@@ -4,6 +4,7 @@
 - [ ] Add test for function option
 - [ ] Extract head call in a function from headMain
 - [ ] Add format output function
+- [ ] Move validation in separate file
 
 **MAYBE**
 
@@ -12,6 +13,7 @@
 
 **DONE**
 
+- [x] Set -n option when only value is given in splitArgs function
 - [x] Extract both the if in function from parser
 - [x] First find the option in parser
 - [x] Move all validation in validateOption function
