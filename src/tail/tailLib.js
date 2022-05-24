@@ -1,8 +1,9 @@
-const { splitLines, joinLines, sliceLines } = require('./stringUtils.js');
+const {
+  splitLines, joinLines, sliceLines, sliceByte } = require('./stringUtils.js');
 
 const tail = (content, option) => {
   if (option.switch === 'byte') {
-    return content.slice(content.length - option.count);
+    return sliceByte(content, option.count);
   }
   const lines = splitLines(content);
   const limit = lines.length - option.count;
