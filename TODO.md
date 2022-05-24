@@ -2,11 +2,13 @@
 
 **TODO**
 
-- [ ] Make tail works for multiple lines
-
+- [ ] Extract line function in different file
+- [ ] Implement byte option (-c)
 
 **DONE**
 
+- [x] Implement -n option
+- [x] Make tail works for multiple lines
 - [x] Start with tail function
 - [x] Create dir structure
 - [x] Add contract in README.md file
