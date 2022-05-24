@@ -2,11 +2,13 @@
 
 **TODO**
 
-- [ ] Create dir structure
+- [ ] Make tail works for multiple lines
 
 
 **DONE**
 
+- [x] Start with tail function
+- [x] Create dir structure
 - [x] Add contract in README.md file
 
 
