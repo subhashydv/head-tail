@@ -12,6 +12,7 @@
 
 **DONE**
 
+- [x] Extract both the if in function from parser
 - [x] First find the option in parser
 - [x] Move all validation in validateOption function
 - [x] Connect validate option with parser

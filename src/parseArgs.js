@@ -7,7 +7,7 @@ const isContainsBothOption = args => {
   }
 };
 
-const isOption = (value) => /^-./.test(value);
+const isOption = (value) => /^-.$/.test(value);
 
 const getOption = function (args) {
   let index = 0;
@@ -22,28 +22,28 @@ const getOption = function (args) {
   return option;
 };
 
-const isValidOption = (option) => {
-  return option === '-n' || option === '-c';
+const validateOption = (option) => {
+  if (option !== '-n' && option !== '-c') {
+    throw {
+      // eslint-disable-next-line max-len
+      message: `head: illegal option -- ${option}\nusage: head [-n lines | -c bytes] [file ...]`
+    };
+  }
 };
 
-const isValidValue = (value) => {
-  return isFinite(value) && value > 0;
+const validateValue = (value) => {
+  if (!isFinite(value) || value < 1) {
+    throw {
+      message: `head: illegal line count -- ${value}`
+    };
+  }
 };
 
 const validateOptions = args => {
   let index = 0;
   while (index < args.length) {
-    if (!isValidOption(args[index])) {
-      throw {
-        // eslint-disable-next-line max-len
-        message: `head: illegal option -- ${args[index]}\nusage: head [-n lines | -c bytes] [file ...]`
-      };
-    }
-    if (!isValidValue(args[index + 1])) {
-      throw {
-        message: `head: illegal line count -- ${args[index + 1]}`
-      };
-    }
+    validateOption(args[index]);
+    validateValue(args[index + 1]);
     index += 2;
   }
   isContainsBothOption(args);
@@ -76,8 +76,8 @@ const splitArgs = args => {
 const parseArgs = args => {
   const splittedArgs = splitArgs(args);
   const option = getOption(splittedArgs);
-  const files = fileList(splittedArgs, option.length);
   validateOptions(option);
+  const files = fileList(splittedArgs, option.length);
 
   const structuredOptions = structureOption(option);
   return { options: structuredOptions, fileName: files };
