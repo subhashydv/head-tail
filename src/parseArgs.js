@@ -32,25 +32,25 @@ const structureOption = args => {
   return options;
 };
 
-const splitArgs = args => {
-  const splittedArgs = [...args];
-  if (isFinite(splittedArgs[0])) {
-    splittedArgs.splice(0, 1, '-n', Math.abs(args[0]));
+const splitArgs = cmdLineArgs => {
+  const args = [...cmdLineArgs];
+  if (isFinite(args[0])) {
+    args.splice(0, 1, '-n', Math.abs(args[0]));
   }
 
-  return splittedArgs.flatMap((arg) => {
+  return args.flatMap((arg) => {
     return /^-../.test(arg) ? [arg.slice(0, 2), +arg.slice(2)] : arg;
   });
 };
 
-const parseArgs = args => {
-  const splittedArgs = splitArgs(args);
-  const option = getOption(splittedArgs);
-  validateOptions(option);
-  const files = fileList(splittedArgs, option.length);
+const parseArgs = cmdLineArgs => {
+  const args = splitArgs(cmdLineArgs);
+  const options = getOption(args);
+  validateOptions(options);
+  const files = fileList(args, options.length);
 
-  const structuredOptions = structureOption(option);
-  return { options: structuredOptions, fileName: files };
+  const option = structureOption(options);
+  return { options: option, fileName: files };
 };
 
 exports.parseArgs = parseArgs;

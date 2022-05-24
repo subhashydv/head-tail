@@ -26,14 +26,14 @@ const fileReader = function (file) {
   };
 };
 
-const printSeparator = (diff) => {
+const headerSeparator = (diff) => {
   return diff > 1 ? '\n' : '';
 };
 
 const printOutput = (log, error, files) => {
   for (let index = 0; index < files.length; index++) {
     const fileName = files.length > 1 ? `==> ${files[index].name} <==\n` : '';
-    const separator = printSeparator(files.length - index);
+    const separator = headerSeparator(files.length - index);
 
     if (files[index].error) {
       error(`head: ${files[index].name}: No such file or directory`);
