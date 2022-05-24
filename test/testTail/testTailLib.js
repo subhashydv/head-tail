@@ -25,6 +25,12 @@ describe('tail', () => {
     assert.strictEqual(tail('a\nb\nc\nd\ne', { switch: 'line', count: 0 }), '');
   });
 
+  it('Should return all lines when count is more than lines', () => {
+    assert.strictEqual(tail('a\nb\nc', {
+      switch: 'line', count: 5
+    }), 'a\nb\nc');
+  });
+
   it('Should return given number of bytes from last', () => {
     assert.strictEqual(tail('hello', { switch: 'byte', count: 2 }), 'lo');
     assert.strictEqual(tail('hello', { switch: 'byte', count: 5 }), 'hello');
@@ -32,5 +38,9 @@ describe('tail', () => {
 
   it('Should return empty string when count is 0', () => {
     assert.strictEqual(tail('hello', { switch: 'byte', count: 0 }), '');
+  });
+
+  it('Should return whole content when count is more than given string', () => {
+    assert.strictEqual(tail('hello', { switch: 'byte', count: 8 }), 'hello');
   });
 });

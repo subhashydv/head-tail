@@ -4,6 +4,7 @@
 
 - [ ] Implement tailMain function
 - [ ] Take file from command line
+- [ ] Add new requirement for tail in README.md
 
 
 **DONE**

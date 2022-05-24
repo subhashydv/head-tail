@@ -3,11 +3,11 @@ const {
 
 const tail = (content, option) => {
   if (option.switch === 'byte') {
-    return sliceByte(content, option.count);
+    return option.count ? sliceByte(content, option.count) : '';
   }
   const lines = splitLines(content);
-  const limit = lines.length - option.count;
-  return joinLines(sliceLines(lines, limit));
+  const lastNLines = option.count ? sliceLines(lines, option.count) : [];
+  return joinLines(lastNLines);
 };
 
 exports.tail = tail;
