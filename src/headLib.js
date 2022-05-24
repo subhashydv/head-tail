@@ -28,7 +28,7 @@ const fileReader = function (file) {
 
 const printSeparator = (diff) => {
   return diff > 1 ? '\n' : '';
-}
+};
 
 const printOutput = (log, error, files) => {
   for (let index = 0; index < files.length; index++) {

@@ -1,12 +1,4 @@
-const isContainsBothOption = args => {
-  if (args.includes('-n') && args.includes('-c')) {
-    throw {
-      type: 'combineOptionError',
-      message: 'head: can\'t combine line and byte counts'
-    };
-  }
-};
-
+const { validateOptions } = require('./validateOptions.js');
 const isOption = (value) => /^-.$/.test(value);
 
 const getOption = function (args) {
@@ -18,36 +10,8 @@ const getOption = function (args) {
       option.push(args[index + 1]);
     }
     index += 2;
-  };
+  }
   return option;
-};
-
-const validateOption = (option) => {
-  if (option !== '-n' && option !== '-c') {
-    throw {
-      // eslint-disable-next-line max-len
-      message: `head: illegal option -- ${option}\nusage: head [-n lines | -c bytes] [file ...]`
-    };
-  }
-};
-
-const validateValue = (value, key) => {
-  const options = { '-n': 'line', '-c': 'byte' };
-  if (!isFinite(value) || value < 1) {
-    throw {
-      message: `head: illegal ${options[key]} count -- ${value}`
-    };
-  }
-};
-
-const validateOptions = args => {
-  let index = 0;
-  while (index < args.length) {
-    validateOption(args[index]);
-    validateValue(args[index + 1], args[index]);
-    index += 2;
-  }
-  isContainsBothOption(args);
 };
 
 const fileList = (args, index) => {
@@ -77,7 +41,6 @@ const splitArgs = args => {
   return splittedArgs.flatMap((arg) => {
     return /^-../.test(arg) ? [arg.slice(0, 2), +arg.slice(2)] : arg;
   });
-
 };
 
 const parseArgs = args => {
@@ -93,5 +56,4 @@ const parseArgs = args => {
 exports.parseArgs = parseArgs;
 exports.fileList = fileList;
 exports.splitArgs = splitArgs;
-exports.validateOptions = validateOptions;
 exports.getOption = getOption;
