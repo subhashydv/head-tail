@@ -1,5 +1,7 @@
 const assert = require('assert');
-const { extractLines, splitLines, joinLines } = require('../src/stringUtils.js');
+const {
+  extractLines, splitLines, joinLines
+} = require('../../src/head/stringUtils.js');
 
 describe('extractLines', () => {
   it('Should return first element of list', () => {

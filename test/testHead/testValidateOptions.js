@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { validateOptions } = require('../src/validateOptions.js');
+const { validateOptions } = require('../../src/head/validateOptions.js');
 
 describe('validateOptions', () => {
   it('Should not return anything if options are valid', () => {

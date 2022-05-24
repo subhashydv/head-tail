@@ -12,6 +12,7 @@
 
 **DONE**
 
+- [x] Change dir structure for head 
 - [x] Move validation in separate file
 - [x] Add new line in print function
 - [x] Set -n option when only value is given in splitArgs function

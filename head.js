@@ -1,5 +1,5 @@
 const { readFileSync } = require('fs');
-const { headMain, printOutput, head } = require('./src/headLib.js');
+const { headMain, printOutput } = require('./src/head/headLib.js');
 const { log, error } = console;
 
 // console.log('usage: head [-n lines | -c bytes] [file ...]');

@@ -1,7 +1,7 @@
 const assert = require('assert');
 const {
   parseArgs, fileList, splitArgs, getOption
-} = require('../src/parseArgs.js');
+} = require('../../src/head/parseArgs.js');
 
 describe('parseArgs', () => {
   it('Should return object with line option and file name', () => {
