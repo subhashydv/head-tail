@@ -2,10 +2,13 @@
 
 **TODO**
 
-- [ ] Implement byte option (-c)
+- [ ] Implement tailMain function
+- [ ] Extract function for slice byte from tail
 
 **DONE**
 
+- [x] Implement byte option (-c)
+- [x] Use richer structure for passing option
 - [x] Extract line function in different file
 - [x] Implement -n option
 - [x] Make tail works for multiple lines
