@@ -3,6 +3,8 @@
 **TODO**
 
 - [ ] Implement tailMain function
+- [ ] Take file from command line
+
 
 **DONE**
 
@@ -38,6 +40,7 @@
 
 **DONE**
 
+- [x] Remove regex from splitArgs
 - [x] Change dir structure for head 
 - [x] Move validation in separate file
 - [x] Add new line in print function

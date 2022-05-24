@@ -32,6 +32,10 @@ const structureOption = args => {
   return options;
 };
 
+const isOptionWithValue = (option) => {
+  return ('' + option).startsWith('-') && option.length > 2;
+};
+
 const splitArgs = cmdLineArgs => {
   const args = [...cmdLineArgs];
   if (isFinite(args[0])) {
@@ -39,7 +43,7 @@ const splitArgs = cmdLineArgs => {
   }
 
   return args.flatMap((arg) => {
-    return /^-../.test(arg) ? [arg.slice(0, 2), +arg.slice(2)] : arg;
+    return isOptionWithValue(arg) ? [arg.slice(0, 2), +arg.slice(2)] : arg;
   });
 };
 
