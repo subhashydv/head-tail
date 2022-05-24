@@ -13,6 +13,7 @@
 
 **DONE**
 
+- [x] Add new line in print function
 - [x] Set -n option when only value is given in splitArgs function
 - [x] Extract both the if in function from parser
 - [x] First find the option in parser
