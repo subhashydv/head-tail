@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { head, printOutput } = require('../../src/head/headLib.js');
+const { head, printOutput, fileReader } = require('../../src/head/headLib.js');
 
 describe('head', () => {
   it('Should return single line', () => {
@@ -72,5 +72,29 @@ describe('printOutput', () => {
     assert.equal(printOutput(log, error, [{
       name: 'a.txt', content: 'abc', error: true
     }]), undefined);
+  });
+});
+
+const shouldReturn = (fileName, content, expectedEncoding) => {
+  return function (file, encoding) {
+    assert.equal(encoding, expectedEncoding);
+    assert.equal(file, fileName);
+    return content;
+  };
+};
+
+describe('fileReader', () => {
+  it('Should return fileName,content and error status in object', () => {
+    const mockReadFile = shouldReturn('a.txt', 'hello', 'utf8');
+    assert.deepStrictEqual(fileReader(mockReadFile, 'a.txt'), {
+      name: 'a.txt', content: 'hello', error: false
+    });
+  });
+
+  it('Should return content as undefined when unable to read file', () => {
+    const mockReadFile = shouldReturn('a.txt', 'hello', 'utf8');
+    assert.deepStrictEqual(fileReader(mockReadFile, 'b.txt'), {
+      name: 'b.txt', content: undefined, error: true
+    });
   });
 });

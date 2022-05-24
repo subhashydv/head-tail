@@ -5,6 +5,7 @@
 - [ ] Implement tailMain function
 - [ ] Take file from command line
 - [ ] Add new requirement for tail in README.md
+- [ ] Implement -q option
 
 
 **DONE**
@@ -29,7 +30,6 @@
 
 **TODO**
 
-- [ ] Add test for fileReader function
 - [ ] Add test for function option
 - [ ] Extract head call in a function from headMain
 - [ ] Add format output function
@@ -41,6 +41,7 @@
 
 **DONE**
 
+- [x] Add test for fileReader function
 - [x] Remove regex from splitArgs
 - [x] Change dir structure for head 
 - [x] Move validation in separate file

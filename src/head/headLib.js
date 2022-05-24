@@ -11,11 +11,11 @@ const head = (content, option) => {
   return joinLines(extractLines(lines, option.value));
 };
 
-const fileReader = function (file) {
+const fileReader = function (readFileSync, file) {
   let content;
   let errorStatus = false;
   try {
-    content = this(file, 'utf8');
+    content = readFileSync(file, 'utf8');
   } catch (error) {
     errorStatus = true;
   }
@@ -45,8 +45,7 @@ const printOutput = (log, error, files) => {
 
 const headMain = (readFileSync, ...args) => {
   const { fileName, options } = parseArgs(args);
-  const readFile = fileReader.bind(readFileSync);
-  const files = fileName.map(readFile);
+  const files = fileName.map((file) => fileReader(readFileSync, file));
 
   return files.map((file) => {
     if (!file.error) {
@@ -59,3 +58,4 @@ const headMain = (readFileSync, ...args) => {
 exports.head = head;
 exports.headMain = headMain;
 exports.printOutput = printOutput;
+exports.fileReader = fileReader;
