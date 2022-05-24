@@ -1,3 +1,22 @@
+# TAIL 
+
+**TODO**
+
+- [ ] Create dir structure
+
+
+**DONE**
+
+- [x] Add contract in README.md file
+
+
+
+
+---------------------------------
+---------------------------------
+
+# HEAD
+
 **TODO**
 
 - [ ] Add test for fileReader function

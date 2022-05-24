@@ -12,3 +12,16 @@ head -c bytes file => This filter displays the first count character of specifie
 
 head --help => This displays usage of head.
 ```
+
+## tail
+
+```Usage : tail [-c # | -n #] [file ...]```
+
+
+```
+tail file ==> display the last part of a file.
+
+tail -n lines file ==> This filter displays the last count lines of specified files.
+
+tail -c bytes file ==> This filter displays the last count character of specified files.
+```
