@@ -6,13 +6,13 @@
 - [ ] Make parser work for -r option
 - [ ] Make parser work for -q option
 - [ ] Implement tailMain function
-- [ ] Take file from command line
 - [ ] Implement -q option
 - [ ] Implement -r option
 
 
 **DONE**
 
+- [x] Take file from command line
 - [x] Made parser work for byte option (-c)
 - [x] Change parser contract
 - [x] Make parser work for multi occurrence of same option

@@ -10,4 +10,11 @@ const tail = (content, option) => {
   return joinLines(lastNLines);
 };
 
+const tailMain = function (readFile, fileName) {
+  const content = readFile(fileName, 'utf8');
+  const option = { switch: 'line', count: 10 };
+  return tail(content, option);
+};
+
 exports.tail = tail;
+exports.tailMain = tailMain;

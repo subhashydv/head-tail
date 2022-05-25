@@ -21,7 +21,7 @@ const optionsInfo = {
   }
 };
 
-describe.only('parser', () => {
+describe('parser', () => {
   it('Should return object of -n switch', () => {
     assert.deepStrictEqual(parser(optionsInfo, ['-n', '2']), {
       option: [{ switch: 'line', count: 2 }]
