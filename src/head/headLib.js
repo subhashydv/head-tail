@@ -26,19 +26,23 @@ const fileReader = function (readFileSync, file) {
   };
 };
 
-const headerSeparator = (diff) => {
-  return diff > 1 ? '\n' : '';
+const formatHeader = (numberOfFiles, file) => {
+  return numberOfFiles > 1 ? `==> ${file.name} <==\n` : '';
+};
+
+const newLine = (filesToPrint) => {
+  return filesToPrint > 1 ? '\n' : '';
 };
 
 const printOutput = (log, error, files) => {
   for (let index = 0; index < files.length; index++) {
-    const fileName = files.length > 1 ? `==> ${files[index].name} <==\n` : '';
-    const separator = headerSeparator(files.length - index);
+    const header = formatHeader(files.length, files[index]);
+    const separator = newLine(files.length - index);
 
     if (files[index].error) {
       error(`head: ${files[index].name}: No such file or directory`);
     } else {
-      log(`${fileName}${files[index].content}${separator}`);
+      log(`${header}${files[index].content}${separator}`);
     }
   }
 };

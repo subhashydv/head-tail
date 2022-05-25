@@ -49,6 +49,7 @@
 
 **DONE**
 
+- [x] Refactor printOutput function change variable names
 - [x] Add test for fileReader function
 - [x] Remove regex from splitArgs
 - [x] Change dir structure for head 
