@@ -2,7 +2,7 @@
 
 **TODO**
 
-- [ ] Implement parser
+- [ ] Make parser work for multi occurrence of same option
 - [ ] Implement tailMain function
 - [ ] Take file from command line
 - [ ] Implement -q option
@@ -10,6 +10,7 @@
 
 **DONE**
 
+- [x] Started Implementing generic parser
 - [x] Add new requirement for tail in README.md
 - [x] Extract function for slice byte from tail
 - [x] Implement byte option (-c)
