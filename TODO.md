@@ -2,14 +2,15 @@
 
 **TODO**
 
+- [ ] Implement parser
 - [ ] Implement tailMain function
 - [ ] Take file from command line
-- [ ] Add new requirement for tail in README.md
 - [ ] Implement -q option
 
 
 **DONE**
 
+- [x] Add new requirement for tail in README.md
 - [x] Extract function for slice byte from tail
 - [x] Implement byte option (-c)
 - [x] Use richer structure for passing option
