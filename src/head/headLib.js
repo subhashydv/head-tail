@@ -30,19 +30,19 @@ const formatHeader = (numberOfFiles, file) => {
   return numberOfFiles > 1 ? `==> ${file.name} <==\n` : '';
 };
 
-const newLine = (filesToPrint) => {
+const selectSeparator = (filesToPrint) => {
   return filesToPrint > 1 ? '\n' : '';
 };
 
-const printOutput = (log, error, files) => {
+const printOutput = (logger, files) => {
   for (let index = 0; index < files.length; index++) {
     const header = formatHeader(files.length, files[index]);
-    const separator = newLine(files.length - index);
+    const separator = selectSeparator(files.length - index);
 
     if (files[index].error) {
-      error(`head: ${files[index].name}: No such file or directory`);
+      logger.error(`head: ${files[index].name}: No such file or directory`);
     } else {
-      log(`${header}${files[index].content}${separator}`);
+      logger.log(`${header}${files[index].content}${separator}`);
     }
   }
 };

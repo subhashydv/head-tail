@@ -59,17 +59,21 @@ const mockError = function (expectedArgs) {
 
 describe('printOutput', () => {
   it('Should print the file content on stdOut', () => {
-    const log = mockLog('hello');
-    const error = mockError('abc');
-    assert.equal(printOutput(log, error, [{
+    const logger = {
+      log: mockLog('hello'),
+      error: mockError('abc')
+    };
+    assert.equal(printOutput(logger, [{
       name: 'a.txt', content: 'hello', error: false
     }]), undefined);
   });
 
   it('Should print the file content on stdError', () => {
-    const log = mockLog('hello');
-    const error = mockError('head: a.txt: No such file or directory');
-    assert.equal(printOutput(log, error, [{
+    const logger = {
+      log: mockLog('hello'),
+      error: mockError('head: a.txt: No such file or directory')
+    };
+    assert.equal(printOutput(logger, [{
       name: 'a.txt', content: 'abc', error: true
     }]), undefined);
   });
