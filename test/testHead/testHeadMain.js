@@ -11,71 +11,39 @@ const mockReadFile = function (content, expectedEncoding) {
   };
 };
 
+const mockLog = function (expectedContent) {
+  return function (content) {
+    this.logCount++;
+    assert.equal(content, expectedContent);
+  };
+};
+
+const mockError = function (expectedContent) {
+  return function (content) {
+    this.errorCount++;
+    assert.equal(content, expectedContent);
+  };
+};
+
 describe('headMain', () => {
-  it('Should return content of given file', () => {
-    let content = [{
-      file: 'a.txt',
-      content: 'hello'
-    }];
-    let mocker = mockReadFile(content, 'utf8');
-    assert.deepStrictEqual(headMain(mocker, 'a.txt'), [{
-      name: 'a.txt', content: 'hello',
-      error: false
-    }]);
+  it('Should print content of given file', () => {
+    const content = [{ file: 'a.txt', content: 'hello' }];
+    const readMocker = mockReadFile(content, 'utf8');
+    const logMocker = { log: mockLog('hello'), logCount: 0 };
 
-    content = [{
-      file: 'a.txt',
-      content: 'hello\nworld'
-    }];
-    mocker = mockReadFile(content, 'utf8');
-    assert.deepStrictEqual(headMain(mocker, 'a.txt'), [{
-      name: 'a.txt', content: 'hello\nworld',
-      error: false
-    }]);
+    headMain(readMocker, logMocker, 'a.txt');
+    assert.equal(logMocker.logCount, 1);
   });
 
-  it('Should set error status as true when unable to read file', () => {
-    const content = [{
-      file: 'a.txt',
-      content: 'hello'
-    }];
-    const mocker = mockReadFile(content, 'utf8');
-    assert.deepStrictEqual(headMain(mocker, 'c.txt'), [{
-      name: 'c.txt', content: undefined,
-      error: true
-    }]);
-  });
+  it('Should print error message', () => {
+    const content = [{ file: 'a.txt', content: 'world' }];
+    const readMocker = mockReadFile(content, 'utf8');
+    const logMocker = {
+      error: mockError('head: b.txt: No such file or directory'),
+      errorCount: 0
+    };
 
-  it('Should return the multiple files content', () => {
-    const content = [{
-      file: 'a.txt',
-      content: 'hello'
-    }, {
-      file: 'b.txt',
-      content: 'world'
-    }];
-    const mocker = mockReadFile(content, 'utf8');
-    assert.deepStrictEqual(headMain(mocker, 'a.txt', 'b.txt'), [{
-      name: 'a.txt', content: 'hello',
-      error: false
-    }, {
-      name: 'b.txt', content: 'world',
-      error: false
-    }]);
-  });
-
-  it('Should return the multiple files content if files exist', () => {
-    const content = [{
-      file: 'a.txt',
-      content: 'hello'
-    }];
-    const mocker = mockReadFile(content, 'utf8');
-    assert.deepStrictEqual(headMain(mocker, 'a.txt', 'c.txt'), [{
-      name: 'a.txt', content: 'hello',
-      error: false
-    }, {
-      name: 'c.txt', content: undefined,
-      error: true
-    }]);
+    headMain(readMocker, logMocker, 'b.txt');
+    assert.equal(logMocker.errorCount, 1);
   });
 });

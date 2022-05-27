@@ -1,5 +1,5 @@
 const { validateOptions } = require('./validateOptions.js');
-const isOption = (value) => /^-.$/.test(value);
+const isOption = (option) => ('' + option).startsWith('-');
 
 const getOption = function (args) {
   let index = 0;
@@ -33,7 +33,7 @@ const structureOption = args => {
 };
 
 const isOptionWithValue = (option) => {
-  return ('' + option).startsWith('-') && option.length > 2;
+  return isOption(option) && option.length > 2;
 };
 
 const splitArgs = cmdLineArgs => {

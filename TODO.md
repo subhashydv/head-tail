@@ -38,8 +38,8 @@
 
 **TODO**
 
-- [ ] Extract head call in a function from headMain
 - [ ] Use readFileError -- don't blow
+- [ ] Change contract of headMain (call printOutput function inside)
 
 **MAYBE**
 
@@ -49,6 +49,8 @@
 
 **DONE**
 
+- [x] HeadMain should call to print function
+- [x] Extract head call in a function from headMain
 - [x] Extract headFiles function
 - [x] Add main function
 - [x] Add test for function option

@@ -56,11 +56,17 @@ const headFiles = (files, options) => {
   });
 };
 
-const headMain = (readFileSync, ...args) => {
+const exitCode = (files) => {
+  return files.some((file) => file.error) ? 1 : 0;
+};
+
+const headMain = (readFileSync, logger, ...args) => {
   const { fileName, options } = parseArgs(args);
   const files = fileName.map((file) => fileReader(readFileSync, file));
 
-  return headFiles(files, options);
+  const headOfFIles = headFiles(files, options);
+  printOutput(logger, headOfFIles);
+  return exitCode(files);
 };
 
 exports.head = head;
