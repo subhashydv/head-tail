@@ -32,14 +32,16 @@ const structureOption = args => {
   return options;
 };
 
-const isOptionWithValue = (option) => {
-  return isOption(option) && option.length > 2;
-};
+const isOptionWithValue = (option) =>
+  isOption(option) && option.length > 2;
+
+const isNumericOption = option => isOption(option) && isFinite(option);
 
 const splitArgs = cmdLineArgs => {
   const args = [...cmdLineArgs];
-  if (isFinite(args[0])) {
-    args.splice(0, 1, '-n', Math.abs(args[0]));
+  if (isNumericOption(args[0])) {
+    args[0] = Math.abs(args[0]);
+    args.unshift('-n');
   }
 
   return args.flatMap((arg) => {

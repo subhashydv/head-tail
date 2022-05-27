@@ -12,16 +12,20 @@ const mockReadFile = function (content, expectedEncoding) {
 };
 
 const mockLog = function (expectedContent) {
+  let index = -1;
   return function (content) {
     this.logCount++;
-    assert.equal(content, expectedContent);
+    index++;
+    assert.equal(content, expectedContent[index]);
   };
 };
 
 const mockError = function (expectedContent) {
+  let index = -1;
   return function (content) {
+    index++;
     this.errorCount++;
-    assert.equal(content, expectedContent);
+    assert.equal(content, expectedContent[index]);
   };
 };
 
@@ -29,9 +33,9 @@ describe('headMain', () => {
   it('Should print content of given file', () => {
     const content = [{ file: 'a.txt', content: 'hello' }];
     const readMocker = mockReadFile(content, 'utf8');
-    const logMocker = { log: mockLog('hello'), logCount: 0 };
+    const logMocker = { log: mockLog(['hello']), logCount: 0 };
 
-    headMain(readMocker, logMocker, 'a.txt');
+    headMain(readMocker, logMocker, ['a.txt']);
     assert.equal(logMocker.logCount, 1);
   });
 
@@ -39,11 +43,11 @@ describe('headMain', () => {
     const content = [{ file: 'a.txt', content: 'world' }];
     const readMocker = mockReadFile(content, 'utf8');
     const logMocker = {
-      error: mockError('head: b.txt: No such file or directory'),
+      error: mockError(['head: b.txt: No such file or directory']),
       errorCount: 0
     };
 
-    headMain(readMocker, logMocker, 'b.txt');
+    headMain(readMocker, logMocker, ['b.txt']);
     assert.equal(logMocker.errorCount, 1);
   });
 });

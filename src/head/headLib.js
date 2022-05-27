@@ -60,7 +60,7 @@ const exitCode = (files) => {
   return files.some((file) => file.error) ? 1 : 0;
 };
 
-const headMain = (readFileSync, logger, ...args) => {
+const headMain = (readFileSync, logger, args) => {
   const { fileName, options } = parseArgs(args);
   const files = fileName.map((file) => fileReader(readFileSync, file));
 

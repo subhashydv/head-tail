@@ -40,6 +40,8 @@
 
 - [ ] Use readFileError -- don't blow
 - [ ] Change contract of headMain (call printOutput function inside)
+- [ ] Extract log and error content in function from printOutput
+- [ ] Change key fileName to fileNames in args object after parsing
 
 **MAYBE**
 
@@ -49,6 +51,8 @@
 
 **DONE**
 
+- [x] Receive args without destructuring in headMain
+- [x] Made parser works for multiple files
 - [x] HeadMain should call to print function
 - [x] Extract head call in a function from headMain
 - [x] Extract headFiles function
