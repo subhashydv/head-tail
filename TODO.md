@@ -39,18 +39,18 @@
 **TODO**
 
 - [ ] Use readFileError -- don't blow
-- [ ] Change contract of headMain (call printOutput function inside)
-- [ ] Extract log and error content in function from printOutput
 - [ ] Change key fileName to fileNames in args object after parsing
 
 **MAYBE**
 
-- [ ] Add format output function
 - [ ] Consider alternate contract for parse function
 - [ ] Consider alternative for slice in head function
 
 **DONE**
 
+- [x] Changed contract for printOutput function
+- [x] Add format output function
+- [x] Change contract of headMain (call printOutput function inside)
 - [x] Receive args without destructuring in headMain
 - [x] Made parser works for multiple files
 - [x] HeadMain should call to print function

@@ -26,24 +26,18 @@ const fileReader = function (readFileSync, file) {
   };
 };
 
-const formatHeader = (numberOfFiles, file) => {
-  return numberOfFiles > 1 ? `==> ${file.name} <==\n` : '';
-};
+const formatWithHead = ({ name, content }) => `==> ${name} <==\n${content}`;
 
-const selectSeparator = (filesToPrint) => {
-  return filesToPrint > 1 ? '\n' : '';
-};
+const formatWithoutHead = ({ content }) => content;
 
-const printOutput = (logger, files) => {
-  for (let index = 0; index < files.length; index++) {
-    const header = formatHeader(files.length, files[index]);
-    const separator = selectSeparator(files.length - index);
+const formatContent = (files) =>
+  files.length > 1 ? formatWithHead : formatWithoutHead;
 
-    if (files[index].error) {
-      logger.error(`head: ${files[index].name}: No such file or directory`);
-    } else {
-      logger.log(`${header}${files[index].content}${separator}`);
-    }
+const printOutput = (formatter, logger, file) => {
+  if (file.error) {
+    logger.error(`head: ${file.name}: No such file or directory`);
+  } else {
+    logger.log(formatter(file));
   }
 };
 
@@ -56,16 +50,15 @@ const headFiles = (files, options) => {
   });
 };
 
-const exitCode = (files) => {
-  return files.some((file) => file.error) ? 1 : 0;
-};
+const exitCode = files => files.some((file) => file.error) ? 1 : 0;
 
 const headMain = (readFileSync, logger, args) => {
   const { fileName, options } = parseArgs(args);
   const files = fileName.map((file) => fileReader(readFileSync, file));
 
-  const headOfFIles = headFiles(files, options);
-  printOutput(logger, headOfFIles);
+  const headOfFiles = headFiles(files, options);
+  const format = formatContent(headOfFiles);
+  headOfFiles.forEach((file) => printOutput(format, logger, file));
   return exitCode(files);
 };
 
@@ -74,3 +67,4 @@ exports.headMain = headMain;
 exports.printOutput = printOutput;
 exports.fileReader = fileReader;
 exports.headFiles = headFiles;
+exports.formatContent = formatContent;

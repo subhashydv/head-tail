@@ -65,9 +65,10 @@ describe('printOutput', () => {
       log: mockLog('hello'),
       error: mockError('abc')
     };
-    assert.equal(printOutput(logger, [{
+    const formatter = file => file.content;
+    assert.equal(printOutput(formatter, logger, {
       name: 'a.txt', content: 'hello', error: false
-    }]), undefined);
+    }), undefined);
   });
 
   it('Should print the file content on stdError', () => {
@@ -75,9 +76,10 @@ describe('printOutput', () => {
       log: mockLog('hello'),
       error: mockError('head: a.txt: No such file or directory')
     };
-    assert.equal(printOutput(logger, [{
+    const formatter = file => file;
+    assert.equal(printOutput(formatter, logger, {
       name: 'a.txt', content: 'abc', error: true
-    }]), undefined);
+    }), undefined);
   });
 });
 
