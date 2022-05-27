@@ -38,7 +38,6 @@
 
 **TODO**
 
-- [ ] Add test for function option
 - [ ] Extract head call in a function from headMain
 - [ ] Use readFileError -- don't blow
 
@@ -50,6 +49,9 @@
 
 **DONE**
 
+- [x] Extract headFiles function
+- [x] Add main function
+- [x] Add test for function option
 - [x] Remove destructing of console in head
 - [x] Refactor printOutput function change variable names
 - [x] Add test for fileReader function

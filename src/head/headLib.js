@@ -47,10 +47,7 @@ const printOutput = (logger, files) => {
   }
 };
 
-const headMain = (readFileSync, ...args) => {
-  const { fileName, options } = parseArgs(args);
-  const files = fileName.map((file) => fileReader(readFileSync, file));
-
+const headFiles = (files, options) => {
   return files.map((file) => {
     if (!file.error) {
       file.content = head(file.content, options);
@@ -59,7 +56,15 @@ const headMain = (readFileSync, ...args) => {
   });
 };
 
+const headMain = (readFileSync, ...args) => {
+  const { fileName, options } = parseArgs(args);
+  const files = fileName.map((file) => fileReader(readFileSync, file));
+
+  return headFiles(files, options);
+};
+
 exports.head = head;
 exports.headMain = headMain;
 exports.printOutput = printOutput;
 exports.fileReader = fileReader;
+exports.headFiles = headFiles;

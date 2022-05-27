@@ -1,5 +1,7 @@
 const assert = require('assert');
-const { head, printOutput, fileReader } = require('../../src/head/headLib.js');
+const {
+  head, printOutput, fileReader, headFiles
+} = require('../../src/head/headLib.js');
 
 describe('head', () => {
   it('Should return single line', () => {
@@ -100,5 +102,21 @@ describe('fileReader', () => {
     assert.deepStrictEqual(fileReader(mockReadFile, 'b.txt'), {
       name: 'b.txt', content: undefined, error: true
     });
+  });
+});
+
+describe('headFiles', () => {
+  it('Should return files after head', () => {
+    const files = [{ fileName: 'a.txt', content: 'a\nb', error: false }];
+    const options = { switch: 'line', value: 1 };
+    const expected = [{ fileName: 'a.txt', content: 'a', error: false }];
+    assert.deepEqual(headFiles(files, options), expected);
+  });
+
+  it('Should not head file if error is true', () => {
+    const files = [{ fileName: 'a.txt', content: 'a\nb', error: true }];
+    const options = { switch: 'line', value: 1 };
+    const expected = [{ fileName: 'a.txt', content: 'a\nb', error: true }];
+    assert.deepEqual(headFiles(files, options), expected);
   });
 });

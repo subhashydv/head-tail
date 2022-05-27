@@ -110,7 +110,8 @@
         "head.js"
       ],
       "rules": {
-        "no-console": "off"
+        "no-console": "off",
+        "no-process-exit": "off"
       }
     }
   ]
