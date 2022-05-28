@@ -12,6 +12,7 @@
 
 **DONE**
 
+- [x] Try `parser` with reduce
 - [x] Take file from command line
 - [x] Made parser work for byte option (-c)
 - [x] Change parser contract
