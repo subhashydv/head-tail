@@ -3,10 +3,14 @@ const { headMain } = require('../../src/head/headLib.js');
 
 const mockReadFile = function (content, expectedEncoding) {
   let count = -1;
-  return function (fileNames, encoding) {
+  return function (fileName, encoding) {
     count++;
-    assert.equal(fileNames, content[count].file);
     assert.equal(encoding, expectedEncoding);
+    try {
+      assert.equal(fileName, content[count].file);
+    } catch (error) {
+      throw { code: 'ENOENT', path: fileName };
+    }
     return content[count].content;
   };
 };

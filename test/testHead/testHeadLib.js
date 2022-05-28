@@ -65,6 +65,7 @@ describe('printOutput', () => {
       log: mockLog('hello'),
       error: mockError('abc')
     };
+
     const formatter = file => file.content;
     assert.equal(printOutput(formatter, logger, {
       name: 'a.txt', content: 'hello', error: false
@@ -76,9 +77,10 @@ describe('printOutput', () => {
       log: mockLog('hello'),
       error: mockError('head: a.txt: No such file or directory')
     };
+
     const formatter = file => file;
     assert.equal(printOutput(formatter, logger, {
-      name: 'a.txt', content: 'abc', error: true
+      name: 'a.txt', content: 'abc', error: 'a.txt: No such file or directory'
     }), undefined);
   });
 });
@@ -86,23 +88,29 @@ describe('printOutput', () => {
 const shouldReturn = (fileNames, content, expectedEncoding) => {
   return function (file, encoding) {
     assert.equal(encoding, expectedEncoding);
-    assert.equal(file, fileNames);
+    try {
+      assert.equal(file, fileNames);
+    } catch (error) {
+      throw { code: 'ENOENT', path: file };
+    }
     return content;
   };
 };
 
 describe('fileReader', () => {
-  it('Should return fileNames,content and error status in object', () => {
+  it('Should return fileName, content and error status in object', () => {
     const mockReadFile = shouldReturn('a.txt', 'hello', 'utf8');
     assert.deepStrictEqual(fileReader(mockReadFile, 'a.txt'), {
       name: 'a.txt', content: 'hello', error: false
     });
   });
 
-  it('Should return content as undefined when unable to read file', () => {
+  it('Should return error as message when unable to read file', () => {
     const mockReadFile = shouldReturn('a.txt', 'hello', 'utf8');
     assert.deepStrictEqual(fileReader(mockReadFile, 'b.txt'), {
-      name: 'b.txt', content: undefined, error: true
+      name: 'b.txt',
+      content: undefined,
+      error: 'b.txt: No such file or directory'
     });
   });
 });

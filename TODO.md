@@ -38,9 +38,7 @@
 
 **TODO**
 
-- [ ] Use readFileError -- don't blow
-- [ ] Change key fileName to fileNames in args object after parsing
-- [ ] Change error code to true only if we can't readFile 
+- [ ] Change error status to error
 
 **MAYBE**
 
@@ -49,6 +47,9 @@
 
 **DONE**
 
+- [x] Use readFileError -- don't blow
+- [x] Change key fileName to fileNames in args object after parsing
+- [x] Change error code true to message only if we can't readFile 
 - [x] Change key name fileName to fileNames
 - [x] Changed contract for printOutput function
 - [x] Add format output function

@@ -11,13 +11,20 @@ const head = (content, option) => {
   return joinLines(extractLines(lines, option.value));
 };
 
+const errorMessage = error => {
+  if (error.code === 'ENOENT') {
+    return `${error.path}: No such file or directory`;
+  }
+  return `${error.path}: Permission denied`;
+};
+
 const fileReader = function (readFileSync, file) {
   let content;
   let errorStatus = false;
   try {
     content = readFileSync(file, 'utf8');
   } catch (error) {
-    errorStatus = true;
+    errorStatus = errorMessage(error);
   }
   return { name: file, content, error: errorStatus };
 };
@@ -31,7 +38,7 @@ const formatContent = (files) =>
 
 const printOutput = (formatter, logger, file) => {
   if (file.error) {
-    logger.error(`head: ${file.name}: No such file or directory`);
+    logger.error(`head: ${file.error}`);
   } else {
     logger.log(formatter(file));
   }
