@@ -29,19 +29,19 @@ const fileReader = function (readFileSync, file) {
   return { name: file, content, error: errorStatus };
 };
 
-const formatWithHead = ({ name, content }) => `==> ${name} <==\n${content}`;
+const formatWithHeader = ({ name, content }) => `==> ${name} <==\n${content}`;
 
-const formatWithoutHead = ({ content }) => content;
+const formatWithoutHeader = ({ content }) => content;
 
-const formatContent = (files) =>
-  files.length > 1 ? formatWithHead : formatWithoutHead;
+const decideFormatter = (files) =>
+  files.length > 1 ? formatWithHeader : formatWithoutHeader;
 
 const printOutput = (formatter, logger, file) => {
   if (file.error) {
     logger.error(`head: ${file.error}`);
-  } else {
-    logger.log(formatter(file));
+    return;
   }
+  logger.log(formatter(file));
 };
 
 const headFiles = (files, options) => {
@@ -60,8 +60,8 @@ const headMain = (readFileSync, logger, args) => {
   const files = fileNames.map((file) => fileReader(readFileSync, file));
 
   const headOfFiles = headFiles(files, options);
-  const format = formatContent(headOfFiles);
-  headOfFiles.forEach((file) => printOutput(format, logger, file));
+  const formatter = decideFormatter(headOfFiles);
+  headOfFiles.forEach((file) => printOutput(formatter, logger, file));
   return exitCode(files);
 };
 
@@ -70,4 +70,4 @@ exports.headMain = headMain;
 exports.printOutput = printOutput;
 exports.fileReader = fileReader;
 exports.headFiles = headFiles;
-exports.formatContent = formatContent;
+exports.formatContent = decideFormatter;
