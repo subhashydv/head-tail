@@ -19,11 +19,7 @@ const fileReader = function (readFileSync, file) {
   } catch (error) {
     errorStatus = true;
   }
-  return {
-    name: file,
-    content,
-    error: errorStatus
-  };
+  return { name: file, content, error: errorStatus };
 };
 
 const formatWithHead = ({ name, content }) => `==> ${name} <==\n${content}`;
@@ -53,8 +49,8 @@ const headFiles = (files, options) => {
 const exitCode = files => files.some((file) => file.error) ? 1 : 0;
 
 const headMain = (readFileSync, logger, args) => {
-  const { fileName, options } = parseArgs(args);
-  const files = fileName.map((file) => fileReader(readFileSync, file));
+  const { fileNames, options } = parseArgs(args);
+  const files = fileNames.map((file) => fileReader(readFileSync, file));
 
   const headOfFiles = headFiles(files, options);
   const format = formatContent(headOfFiles);

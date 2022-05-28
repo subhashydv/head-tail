@@ -3,9 +3,9 @@ const { headMain } = require('../../src/head/headLib.js');
 
 const mockReadFile = function (content, expectedEncoding) {
   let count = -1;
-  return function (fileName, encoding) {
+  return function (fileNames, encoding) {
     count++;
-    assert.equal(fileName, content[count].file);
+    assert.equal(fileNames, content[count].file);
     assert.equal(encoding, expectedEncoding);
     return content[count].content;
   };

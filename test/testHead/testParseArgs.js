@@ -10,7 +10,7 @@ describe('parseArgs', () => {
         value: 1,
         switch: 'line'
       },
-      fileName: ['a.txt']
+      fileNames: ['a.txt']
     });
   });
 
@@ -20,7 +20,7 @@ describe('parseArgs', () => {
         value: 1,
         switch: 'byte'
       },
-      fileName: ['a.txt']
+      fileNames: ['a.txt']
     });
   });
 
@@ -30,7 +30,7 @@ describe('parseArgs', () => {
         value: 10,
         switch: 'line'
       },
-      fileName: ['a.txt']
+      fileNames: ['a.txt']
     });
   });
 
@@ -40,7 +40,7 @@ describe('parseArgs', () => {
         value: 3,
         switch: 'line'
       },
-      fileName: ['a.txt']
+      fileNames: ['a.txt']
     });
   });
 
@@ -50,7 +50,7 @@ describe('parseArgs', () => {
         value: 3,
         switch: 'byte'
       },
-      fileName: ['a.txt']
+      fileNames: ['a.txt']
     });
   });
 
@@ -66,7 +66,7 @@ describe('parseArgs', () => {
         value: 3,
         switch: 'byte'
       },
-      fileName: ['a.txt', 'b.txt']
+      fileNames: ['a.txt', 'b.txt']
     });
   });
 
@@ -76,7 +76,7 @@ describe('parseArgs', () => {
         value: 1,
         switch: 'line'
       },
-      fileName: ['a.txt']
+      fileNames: ['a.txt']
     });
   });
 
@@ -86,7 +86,7 @@ describe('parseArgs', () => {
         value: 1,
         switch: 'line'
       },
-      fileName: ['a.txt']
+      fileNames: ['a.txt']
     });
   });
 });
@@ -95,9 +95,12 @@ describe('fileList', () => {
   it('Should return file name', () => {
     assert.deepEqual(fileList(['-n', 1, 'a.txt'], 2), ['a.txt']);
   });
+
   it('Should return list of file names', () => {
-    assert.deepEqual(fileList(['-c', 8, 'a.txt', 'b.txt'], 2), ['a.txt', 'b.txt']);
+    assert.deepEqual(fileList(['-c', 8, 'a.txt', 'b.txt'], 2),
+      ['a.txt', 'b.txt']);
   });
+
   it('Should throw error when file is not present', () => {
     assert.throws(() => fileList(['-c', 3], 2), {
       message: 'usage: head [-n lines | -c bytes] [file ...]'
@@ -131,6 +134,7 @@ describe('getOption', () => {
   it('Should return options when file is given', () => {
     assert.deepStrictEqual(getOption(['-n', 5, 'a.txt']), ['-n', 5]);
     assert.deepStrictEqual(getOption(['-n', 5, 3, 'a.txt']), ['-n', 5]);
-    assert.deepStrictEqual(getOption(['-n', 5, -3, 'a.txt']), ['-n', 5, -3, 'a.txt']);
+    assert.deepStrictEqual(getOption(['-n', 5, -3, 'a.txt']),
+      ['-n', 5, -3, 'a.txt']);
   });
 });

@@ -56,7 +56,7 @@ const parseArgs = cmdLineArgs => {
   const files = fileList(args, options.length);
 
   const option = structureOption(options);
-  return { options: option, fileName: files };
+  return { options: option, fileNames: files };
 };
 
 exports.parseArgs = parseArgs;

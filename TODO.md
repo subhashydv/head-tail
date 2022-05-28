@@ -40,6 +40,7 @@
 
 - [ ] Use readFileError -- don't blow
 - [ ] Change key fileName to fileNames in args object after parsing
+- [ ] Change error code to true only if we can't readFile 
 
 **MAYBE**
 
@@ -48,6 +49,7 @@
 
 **DONE**
 
+- [x] Change key name fileName to fileNames
 - [x] Changed contract for printOutput function
 - [x] Add format output function
 - [x] Change contract of headMain (call printOutput function inside)

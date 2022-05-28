@@ -83,16 +83,16 @@ describe('printOutput', () => {
   });
 });
 
-const shouldReturn = (fileName, content, expectedEncoding) => {
+const shouldReturn = (fileNames, content, expectedEncoding) => {
   return function (file, encoding) {
     assert.equal(encoding, expectedEncoding);
-    assert.equal(file, fileName);
+    assert.equal(file, fileNames);
     return content;
   };
 };
 
 describe('fileReader', () => {
-  it('Should return fileName,content and error status in object', () => {
+  it('Should return fileNames,content and error status in object', () => {
     const mockReadFile = shouldReturn('a.txt', 'hello', 'utf8');
     assert.deepStrictEqual(fileReader(mockReadFile, 'a.txt'), {
       name: 'a.txt', content: 'hello', error: false
@@ -109,16 +109,16 @@ describe('fileReader', () => {
 
 describe('headFiles', () => {
   it('Should return files after head', () => {
-    const files = [{ fileName: 'a.txt', content: 'a\nb', error: false }];
+    const files = [{ fileNames: 'a.txt', content: 'a\nb', error: false }];
     const options = { switch: 'line', value: 1 };
-    const expected = [{ fileName: 'a.txt', content: 'a', error: false }];
+    const expected = [{ fileNames: 'a.txt', content: 'a', error: false }];
     assert.deepEqual(headFiles(files, options), expected);
   });
 
   it('Should not head file if error is true', () => {
-    const files = [{ fileName: 'a.txt', content: 'a\nb', error: true }];
+    const files = [{ fileNames: 'a.txt', content: 'a\nb', error: true }];
     const options = { switch: 'line', value: 1 };
-    const expected = [{ fileName: 'a.txt', content: 'a\nb', error: true }];
+    const expected = [{ fileNames: 'a.txt', content: 'a\nb', error: true }];
     assert.deepEqual(headFiles(files, options), expected);
   });
 });
